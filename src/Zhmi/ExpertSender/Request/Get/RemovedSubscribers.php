@@ -7,6 +7,7 @@ use Zhmi\ExpertSender\Request;
 class RemovedSubscribers extends Request
 {
     protected $endPoint = '/Api/RemovedSubscribers';
+    protected $responseEntity = 'Zhmi\\ExpertSender\\Response\\RemovedSubscribersType';
 
     function __construct(array $listIds = array(), $removeTypes = array(), \DateTime $startDate = null, \DateTime $endDate = null)
     {
