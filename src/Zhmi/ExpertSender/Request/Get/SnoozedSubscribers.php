@@ -12,6 +12,7 @@ use Zhmi\ExpertSender\Request;
 class SnoozedSubscribers extends Request
 {
     protected $endPoint = '/Api/SnoozedSubscribers';
+    protected $responseEntity = 'Zhmi\\ExpertSender\\Response\\SnoozedSubscribersType';
 
     /**
      * @param array     $listIds Id листов. Необязательно. Если узазаны, то будут возвращены подписчики только из указанных листов
