@@ -15,19 +15,17 @@ try
     //Making a request call
     $response = $service->call($request);
     $entity = $response->getEntity();
-    if ($response->isOk())
-    {
-        /** @var ES\Response\SubscriberType $entity */
-        echo "{$entity->Lastname} {$entity->Ip}";
-    }
-    else
-    {
-        /** @var ES\Response\ErrorMessageType $entity */
-        $error = $entity->Message;
-        echo $error;
-    }
+
+    /** @var ES\Response\SubscriberType $entity */
+    echo "{$entity->Lastname} {$entity->Ip}";
+
 }
-catch (Exception $e)
+catch (ES\ServiceException $e)
 {
-    echo $e->getMessage();
+    print_r('Ошибка выполнения запроса к сервису:' . "\n");
+    echo $e->getCode() . " - " . $e->getMessage();
+}
+catch (\Exception $e)
+{
+    var_dump($e);
 }

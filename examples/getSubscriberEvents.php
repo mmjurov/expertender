@@ -16,22 +16,19 @@ try
     //Making a request call
     $response = $service->call($request);
     $entity = $response->getEntity();
-    if ($response->isOk())
+
+    foreach ($entity->Events as $event)
     {
-        foreach ($entity->Events as $event)
-        {
-            /** @var ES\Response\EventType $event */
-            echo $event->StartDate->format('d.m.Y H:i:s') . ' - ' . $event->MessageSubject . '<br>';
-        }
-    }
-    else
-    {
-        /** @var ES\Response\ErrorMessageType $entity */
-        $error = $entity->Message;
-        echo $error;
+        /** @var ES\Response\EventType $event */
+        echo $event->StartDate->format('d.m.Y H:i:s') . ' - ' . $event->MessageSubject . '<br>';
     }
 }
-catch (Exception $e)
+catch (ES\ServiceException $e)
 {
-    echo $e->getMessage();
+    print_r('Ошибка выполнения запроса к сервису:' . "\n");
+    echo $e->getCode() . " - " . $e->getMessage();
+}
+catch (\Exception $e)
+{
+    var_dump($e);
 }

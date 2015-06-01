@@ -17,7 +17,6 @@ try
         /** @var ES\Response\SnoozedSubscriberType $snoozedSubscriber */
         echo $snoozedSubscriber->Email . '<br>';
     }
-
 }
 catch (ES\ServiceException $e)
 {

@@ -18,7 +18,6 @@ try
         /** @var ES\Response\RemovedSubscriberType $removedSubscriber */
         echo $removedSubscriber->Email . '<br>';
     }
-
 }
 catch (ES\ServiceException $e)
 {
