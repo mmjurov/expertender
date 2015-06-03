@@ -7,7 +7,7 @@ use Zhmi\ExpertSender\Request;
 class Lists extends Request
 {
     protected $endPoint = '/Api/Lists';
-
+    protected $responseEntity = 'Zhmi\\ExpertSender\\Response\\ListsType';
     function __construct($seedLists = null)
     {
         if ($seedLists !== null)
