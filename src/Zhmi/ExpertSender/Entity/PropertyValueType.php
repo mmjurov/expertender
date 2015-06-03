@@ -95,7 +95,7 @@ class PropertyValueType extends BaseType
         switch ($actualType)
         {
             case 'DateTime':
-                $value = $value->format('Y-m-dTH:i:s');
+                $value = $value->format('Y-m-d\TH:i:s');
                 break;
             case 'integer':
             case 'double':
@@ -116,7 +116,7 @@ class PropertyValueType extends BaseType
             $xsi = 'date';
         }
 
-        $this->type = $xsi;
+        $this->type = 'xs:'.$xsi;
         parent::__set('value', $value);
 
     }

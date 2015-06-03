@@ -161,7 +161,7 @@ class XmlParser
 
         $meta->phpObject = $this->newPhpObject($meta);
 
-        if ($meta->phpObject)
+        /*if ($meta->phpObject)
         {
             foreach ($attributes as $attribute => $value)
             {
@@ -172,7 +172,7 @@ class XmlParser
                     $meta->phpObject->{$attributeMeta->propertyName} = $this->getValueToAssignToProperty($attributeMeta);
                 }
             }
-        }
+        }*/
 
         return $meta;
     }

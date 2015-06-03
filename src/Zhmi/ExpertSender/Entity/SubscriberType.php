@@ -6,6 +6,7 @@ use Zhmi\ExpertSender\BaseType;
 /**
  * Класс, описывающий сущность Subscriber (подписчик)
  * Class SubscriberType
+ * @package Zhmi\ExpertSender\Entity
  * @property string $mode
  * @property boolean $force
  * @property integer $listId
@@ -17,7 +18,7 @@ use Zhmi\ExpertSender\BaseType;
  * @property string $name
  * @property string $vendor
  * @property string $ip
- * @property \Zhme\ExpertSender\Entity\PropertyType[] $properties
+ * @property array $properties
  */
 class SubscriberType extends BaseType
 {
