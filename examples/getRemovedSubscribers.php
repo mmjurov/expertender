@@ -3,7 +3,6 @@ date_default_timezone_set('Europe/Moscow');
 require_once('../vendor/autoload.php');
 use \Zhmi\ExpertSender as ES;
 
-echo '<pre>';
 $a = microtime();
 $service = new ES\Service;
 $service->setKey('YOUR_API_KEY');
