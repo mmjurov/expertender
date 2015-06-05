@@ -162,6 +162,15 @@ class BaseType
             $propInfo[ 'unboundTag' ] = null;
         }
 
+        if (!isset( $propInfo['cdata']) || !is_bool($propInfo['cdata']))
+        {
+            $propInfo['cdata'] = false;
+        }
+        else
+        {
+            $propInfo['cdata'] = true;
+        }
+
         if (!isset( $propInfo[ 'attribute' ] ) || !is_bool($propInfo[ 'attribute' ]))
         {
             $propInfo[ 'attribute' ] = false;
@@ -197,6 +206,7 @@ class BaseType
 
         foreach ($this->params as $name => $propInfo)
         {
+            $propInfo = $this->getPropertyInfo($name);
             if (isset($this->{$name}) && $propInfo['attribute'] !== true)
             {
                 $propertyValue = $this->{$name};
@@ -265,6 +275,7 @@ class BaseType
         $xml = '';
         foreach ($this->params as $name => $propInfo)
         {
+            $propInfo = $this->getPropertyInfo($name);
             if ($propInfo['attribute'] !== true)
             {
                 continue;
