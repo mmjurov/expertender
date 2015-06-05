@@ -33,6 +33,7 @@ class ContentType extends BaseType
         'header' => array(
             'type' => 'integer',
             'xmlName' => 'Header',
+            'cdata' => true,
         ),
         'footer' => array(
             'type' => 'integer',

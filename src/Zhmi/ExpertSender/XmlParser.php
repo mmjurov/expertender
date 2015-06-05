@@ -106,7 +106,7 @@ class XmlParser
                 }
             }
         } else {
-            $this->rootObject = $meta->phpObject;
+            $this->rootObject = $meta->phpObject === null ? $this->getValueToAssign($meta) : $meta->phpObject;
         }
     }
 

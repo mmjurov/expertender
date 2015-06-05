@@ -14,29 +14,13 @@ class SnippetType extends BaseType
         'value' => array(
             'type' => 'string',
             'xmlName' => 'Value',
+            'cdata' => true
         ),
     );
 
     public function __construct($name, $value)
     {
         $this->name = $name;
-        $this->setValue($value);
-    }
-
-    public function __set($name, $value)
-    {
-        if ($name === 'value')
-        {
-            $this->setValue($value);
-        }
-        else
-        {
-            parent::__set($name, $value);
-        }
-    }
-
-    private function setValue($value)
-    {
-        parent::__set('value', "<![CDATA[$value]]>");
+        $this->value = $value;
     }
 }

@@ -231,13 +231,21 @@ class BaseType
                 }
                 else
                 {
+                    $cdata = isset($propInfo['cdata']) && $propInfo['cdata'] === true;
                     if ($propInfo['xmlName'])
                     {
-                        $xml .= "<{$propInfo['xmlName']}{$this->attributesToXml()}>{$this->encodeXmlValue($propertyValue)}</{$propInfo['xmlName']}>";
+                        $tag = $propInfo['xmlName'];
+                        $xml .= "<{$tag}{$this->attributesToXml()}>";
+                        if ($cdata) $xml .= '<![CDATA[';
+                        $xml .= "{$this->encodeXmlValue($propertyValue)}";
+                        if ($cdata) $xml .= ']]>';
+                        $xml .= "</{$tag}>";
                     }
                     else
                     {
+                        if ($cdata) $xml .= '<![CDATA[';
                         $xml .= $this->encodeXmlValue($propertyValue);
+                        if ($cdata) $xml .= ']]>';
                     }
 
                 }
