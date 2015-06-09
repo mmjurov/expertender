@@ -6,7 +6,7 @@ use Zhmi\ExpertSender\BaseType;
 /**
  * Class TemplatesType
  * @package Zhmi\ExpertSender\Response
- * @property array $Templates
+ * @property TemplateType[] $Templates
  */
 class TemplatesType extends BaseType
 {

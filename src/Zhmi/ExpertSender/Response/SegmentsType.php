@@ -6,7 +6,7 @@ use Zhmi\ExpertSender\BaseType;
 /**
  * Class SegmentsType
  * @package Zhmi\ExpertSender\Response
- * @property array $Segments
+ * @property SegmentType[] $Segments
  */
 class SegmentsType extends BaseType
 {

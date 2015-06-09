@@ -6,7 +6,7 @@ use Zhmi\ExpertSender\BaseType;
 /**
  * Class SnoozedSubscribersType
  * @package Zhmi\ExpertSender\Response
- * @property array $SnoozedSubscribers
+ * @property SnoozedSubscriberType[] $SnoozedSubscribers
  */
 class SnoozedSubscribersType extends BaseType
 {

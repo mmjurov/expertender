@@ -3,6 +3,12 @@
 namespace Zhmi\ExpertSender\Response;
 use Zhmi\ExpertSender\BaseType;
 
+/**
+ * Class SuppressionListType
+ * @package Zhmi\ExpertSender\Response
+ * @property integer $Id
+ * @property string $Name
+ */
 class SuppressionListType extends BaseType
 {
     protected $params = array(

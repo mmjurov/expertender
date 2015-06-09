@@ -6,14 +6,14 @@ use Zhmi\ExpertSender\BaseType;
 /**
  * Class SubscriberType
  * @package Zhme\ExpertSender\Response
- * @property boolean BlackList
- * @property array StateOnLists
- * @property array SuppressionLists
- * @property integer Id
- * @property string Lastname
- * @property string Vendor
- * @property string Ip
- * @property array Properties
+ * @property boolean $BlackList
+ * @property StateOnListType[] $StateOnLists
+ * @property SuppressionListType[] $SuppressionLists
+ * @property integer $Id
+ * @property string $Lastname
+ * @property string $Vendor
+ * @property string $Ip
+ * @property PropertyType[] $Properties
  */
 class SubscriberType extends BaseType
 {

@@ -9,8 +9,7 @@ use Zhmi\ExpertSender\BaseType;
  *
  * Class TriggerType
  * @package Zhme\ExpertSender\Entity
- *
- * @property \Zhme\ExpertSender\Entity\ReceiverType $receivers
+ * @property ReceiverType[] $receivers
  * @property string $type
  */
 class TriggerType extends BaseType

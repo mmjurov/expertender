@@ -18,7 +18,7 @@ use Zhmi\ExpertSender\BaseType;
  * @property string $name
  * @property string $vendor
  * @property string $ip
- * @property array $properties
+ * @property PropertyType[] $properties
  */
 class SubscriberType extends BaseType
 {

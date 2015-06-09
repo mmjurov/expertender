@@ -4,6 +4,14 @@ namespace Zhmi\ExpertSender\Entity;
 
 use Zhmi\ExpertSender\BaseType;
 
+/**
+ * Class RecipientsType
+ * @package Zhmi\ExpertSender\Entity
+ * @property integer[] $subscriberLists
+ * @property integer[] $subscriberSegments
+ * @property integer[] $seedLists
+ * @property integer[] $supressionLists
+ */
 class RecipientsType extends BaseType
 {
     protected $params = array(
@@ -32,9 +40,4 @@ class RecipientsType extends BaseType
             'unboundTag' => 'SuppressionLists'
         )
     );
-
-    public function __construct()
-    {
-
-    }
 }

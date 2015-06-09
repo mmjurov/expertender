@@ -4,6 +4,12 @@ namespace Zhmi\ExpertSender\Entity;
 
 use Zhmi\ExpertSender\BaseType;
 
+/**
+ * Class PropertyType
+ * @package Zhmi\ExpertSender\Entity
+ * @property integer $id
+ * @property PropertyValueType $value
+ */
 class PropertyType extends BaseType
 {
     protected $params = array(

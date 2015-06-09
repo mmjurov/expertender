@@ -6,7 +6,7 @@ use Zhmi\ExpertSender\BaseType;
 /**
  * Class RemovedSubscribersType
  * @package Zhmi\ExpertSender\Response
- * @property array $RemovedSubscribers
+ * @property RemovedSubscriberType[] $RemovedSubscribers
  */
 class RemovedSubscribersType extends BaseType
 {

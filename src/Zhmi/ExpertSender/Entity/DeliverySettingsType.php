@@ -12,7 +12,7 @@ use Zhmi\ExpertSender\BaseType;
  * @property string $throttlingMethod
  * @property integer $manualThrottlingTime
  * @property string $timeOptimizationPeriod
- * @property \Zhmi\ExpertSender\Entity\ChannelType $channels
+ * @property ChannelType[] $channels
  */
 class DeliverySettingsType extends BaseType
 {

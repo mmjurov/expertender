@@ -13,9 +13,8 @@ use Zhmi\ExpertSender\BaseType;
  * @property string $Tags
  * @property string $ThrottlingMethod
  * @property string $Channels
- * @property ListsType $Lists
- * @property SegmentsType $Segments
- * @property integer $Channels
+ * @property ListsType[] $Lists
+ * @property SegmentsType[] $Segments
  */
 class MessageType extends BaseType
 {

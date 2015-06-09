@@ -3,6 +3,12 @@
 namespace Zhmi\ExpertSender\Entity;
 use Zhmi\ExpertSender\BaseType;
 
+/**
+ * Class ChannelType
+ * @package Zhmi\ExpertSender\Entity
+ * @property string $ip
+ * @property integer $percentage
+ */
 class ChannelType extends BaseType
 {
     protected $params = array(

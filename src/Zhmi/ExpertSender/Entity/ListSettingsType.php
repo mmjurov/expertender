@@ -7,11 +7,11 @@ use Zhmi\ExpertSender\BaseType;
 /**
  * Class ListSettingsType
  * @package Zhmi\ExpertSender\Entity
- * @property \Zhmi\ExpertSender\Entity\GeneralSettingsType $generalSettings
- * @property \Zhmi\ExpertSender\Entity\AddressSettingsType $addressSettings
- * @property \Zhmi\ExpertSender\Entity\SubscriberSettingsType $subscriberSettings
- * @property \Zhmi\ExpertSender\Entity\DomainSettingsType $domainSettings
- * @property \Zhmi\ExpertSender\Entity\ConfirmationEmailType $confirmationEmail
+ * @property GeneralSettingsType $generalSettings
+ * @property AddressSettingsType $addressSettings
+ * @property SubscriberSettingsType $subscriberSettings
+ * @property DomainSettingsType $domainSettings
+ * @property ConfirmationEmailType $confirmationEmail
  */
 class ListSettingsType extends BaseType
 {

@@ -10,9 +10,9 @@ use Zhmi\ExpertSender\BaseType;
  * Class TransactionalType
  * @package Zhme\ExpertSender\Entity
  *
- * @property \Zhme\ExpertSender\Entity\ReceiverType $receiver
- * @property \Zhme\ExpertSender\Entity\SnippetType[] $snippets
- * @property \Zhme\ExpertSender\Entity\AttachmentType[] $attachments
+ * @property ReceiverType $receiver
+ * @property SnippetType[] $snippets
+ * @property AttachmentType[] $attachments
  */
 class TransactionalType extends BaseType
 {

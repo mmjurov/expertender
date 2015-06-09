@@ -3,6 +3,15 @@
 namespace Zhmi\ExpertSender\Response;
 use Zhmi\ExpertSender\BaseType;
 
+/**
+ * Class ListType
+ * @package Zhmi\ExpertSender\Response
+ * @property integer $Id
+ * @property string $Name
+ * @property string $FriendlyName
+ * @property string $Language
+ * @property string $OptInMode
+ */
 class ListType extends BaseType
 {
     protected $params = array(

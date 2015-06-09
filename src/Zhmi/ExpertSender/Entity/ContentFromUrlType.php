@@ -3,6 +3,14 @@
 namespace Zhmi\ExpertSender\Entity;
 use Zhmi\ExpertSender\BaseType;
 
+/**
+ * Class ContentFromUrlType
+ * @package Zhmi\ExpertSender\Entity
+ * @property string $url
+ * @property string $username
+ * @property string $password
+ * @property string $ftpAuth
+ */
 class ContentFromUrlType extends BaseType
 {
     protected $params = array(

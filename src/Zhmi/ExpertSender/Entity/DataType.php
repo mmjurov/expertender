@@ -4,6 +4,13 @@ namespace Zhmi\ExpertSender\Entity;
 
 use Zhmi\ExpertSender\BaseType;
 
+/**
+ * @deprecated
+ * Class DataType
+ * @package Zhmi\ExpertSender\Entity
+ * @property BaseType $data
+ * @property string $type
+ */
 class DataType extends BaseType
 {
     protected $params = array(
@@ -18,6 +25,9 @@ class DataType extends BaseType
         )
     );
 
+    /**
+     * @deprecated
+     */
     public function __construct(BaseType $entity)
     {
         $this->data = $entity;

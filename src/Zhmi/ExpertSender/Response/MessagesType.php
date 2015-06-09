@@ -6,7 +6,7 @@ use Zhmi\ExpertSender\BaseType;
 /**
  * Class MessagesType
  * @package Zhmi\ExpertSender\Response
- * @property MessageType $Messages
+ * @property MessageType[] $Messages
  */
 class MessagesType extends BaseType
 {

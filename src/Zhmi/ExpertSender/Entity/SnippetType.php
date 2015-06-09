@@ -4,6 +4,12 @@ namespace Zhmi\ExpertSender\Entity;
 
 use Zhmi\ExpertSender\BaseType;
 
+/**
+ * Class SnippetType
+ * @package Zhmi\ExpertSender\Entity
+ * @property string $name
+ * @property string $value
+ */
 class SnippetType extends BaseType
 {
     protected $params = array(

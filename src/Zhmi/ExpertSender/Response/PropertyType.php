@@ -3,6 +3,21 @@
 namespace Zhmi\ExpertSender\Response;
 use Zhmi\ExpertSender\BaseType;
 
+/**
+ * Class PropertyType
+ * @package Zhmi\ExpertSender\Response
+ * @property integer $Id
+ * @property string $Source
+ * @property \DateTime $DateTimeValue
+ * @property integer $IntValue
+ * @property string $StringValue
+ * @property string $Type
+ * @property string $FriendlyName
+ * @property string $Name
+ * @property string $DefaultStringValue
+ * @property integer $DefaultIntValue
+ * @property \DateTime $DefaultDateTimeValue
+ */
 class PropertyType extends BaseType
 {
     protected $params = array(

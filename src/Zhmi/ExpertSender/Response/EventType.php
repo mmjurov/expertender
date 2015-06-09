@@ -6,13 +6,13 @@ use Zhmi\ExpertSender\BaseType;
 /**
  * Class EventType
  * @package Zhme\ExpertSender\Response
- * @property \DateTime StartDate
- * @property \DateTime EndDate
- * @property string MessageType
- * @property string EventType
- * @property integer EventCount
- * @property string MessageSubject
- * @property integer MessageId
+ * @property \DateTime $StartDate
+ * @property \DateTime $EndDate
+ * @property string $MessageType
+ * @property string $EventType
+ * @property integer $EventCount
+ * @property string $MessageSubject
+ * @property integer $MessageId
  */
 class EventType extends BaseType
 {

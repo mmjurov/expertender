@@ -3,6 +3,13 @@
 namespace Zhmi\ExpertSender\Entity;
 use Zhmi\ExpertSender\BaseType;
 
+/**
+ * Class GoogleAnalyticsTagsType
+ * @package Zhmi\ExpertSender\Entity
+ * @property string $campaign
+ * @property string $source
+ * @property string $content
+ */
 class GoogleAnalyticsTagsType extends BaseType
 {
     protected $params = array(
