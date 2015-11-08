@@ -1,0 +1,30 @@
+GET Time						+
+GET Subscribers 				+
+POST Subscribers 				+
+DELETE Subscribers 				+
+GET Messages 					+
+GET MessageStatistics			-
+GET LinkStatistics				-
+GET VendorStatistics			-
+POST Triggers 					+
+POST Transactionals				+
+POST SuppressionLists 			+
+DELETE SuppressionLists 		+
+GET Activities 					- csv
+GET Lists 						+
+POST Lists 						+
+GET Segments 					+
+GET ImportToListTasks 			-
+POST ImportToListTasks 			-
+POST Newsletters 				+
+GET RemovedSubscribers 			+
+GET Bounces 					- csv
+POST Goals 						- ??
+GET Exports						-
+POST Exports 					-
+GET DataTablesGetTables			-
+POST DataTablesGetData 			-
+POST DataTablesGetDataCount 	-
+POST DataTablesAddRow 			-
+POST DataTablesUpdateRow 		-
+POST DataTablesDeleteRow 		-
