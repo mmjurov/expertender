@@ -1,5 +1,5 @@
 {
-  "name": "Zhmi/expert-sender-api",
+  "name": "zhmi/expert-sender-api",
   "description": "PHP module provides an API to manipulate by Expert Sender email marketing platform",
   "minimum-stability": "stable",
   "license": "proprietary",
@@ -11,7 +11,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "Zhmi\\": "src/Zhmi/"
+      "Zhmi\\": "src/"
     }
   }
 }
