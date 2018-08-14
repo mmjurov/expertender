@@ -16,7 +16,7 @@ class Http {
 
     }
 
-    public function query($url, $method = 'GET', $content = null, &$http_response_header = array())
+    public function query($url, $method = 'GET', $content = null, &$response_header = [])
     {
         $method = strtoupper($method);
 
@@ -39,6 +39,7 @@ class Http {
         {
             throw new \Exception("Couldn't connect to service", self::CONNECTION_ERROR);
         }
+        $response_header = $http_response_header;
         return $result;
     }
 
