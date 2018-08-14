@@ -14,7 +14,7 @@ class Service {
     /**
      * @var string адрес сервера веб-сервиса
      */
-    private $url = 'https://api2.esv2.com';
+    private $url = 'https://api2.esv2.com/v2';
 
     /**
      * @var string Ключ клиента для работы API
