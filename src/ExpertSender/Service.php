@@ -14,7 +14,7 @@ class Service {
     /**
      * @var string адрес сервера веб-сервиса
      */
-    private $url = 'https://api2.esv2.com/v2';
+    private $uri = 'https://api4.esv2.com/v2';
 
     /**
      * @var string Ключ клиента для работы API
@@ -24,17 +24,17 @@ class Service {
     /**
      * @return string
      */
-    public function getUrl()
+    public function getUri()
     {
-        return $this->url;
+        return $this->uri;
     }
 
     /**
-     * @param string $url
+     * @param string $uri
      */
-    public function setUrl($url)
+    public function setUri($uri)
     {
-        $this->url = $url;
+        $this->uri = $uri;
     }
 
     /**
@@ -56,7 +56,7 @@ class Service {
     function __construct()
     {
         //TODO Сделать выборку настроек из опций CMS
-        $this->setUrl( $this->url );
+        $this->setUri( $this->uri );
         $this->setKey( $this->key );
     }
 
@@ -66,15 +66,22 @@ class Service {
      * @return Response
      * @throws ServiceException
      */
-    function call( Request $request )
+    function call( Request $request , $debug = false)
     {
         $method     = $request->getRequestMethod();
-        $query      = $request->getRequestBody($this->key);
-        $urlPart    = $request->getRequestUrl(strlen($query) > 0 ? array() : array('apiKey' => $this->key));
+        $xmlBody      = $request->getRequestBody($this->key);
+        $urlPath    = $request->getRequestUrl(strlen($xmlBody) > 0 ? array() : array('apiKey' => $this->key));
         $entity     = null;
         $transport  = new Http();
 
-        $responseBody = $transport->query($this->url . $urlPart, $method, $query, $http_response_header);
+        if ($debug) {
+            echo $xmlBody;
+            die();
+        }
+
+        $url = trim($this->uri, '/') . '/' . trim($urlPath, '/');
+
+        $responseBody = $transport->query($url, $method, $xmlBody, $http_response_header);
         $responseEntity = $request->getResponseEntity();
         $response = new Response($responseBody, $http_response_header, $responseEntity);
         $entity = $response->getEntity();

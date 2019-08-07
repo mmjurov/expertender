@@ -63,11 +63,18 @@ class Request
         if (!is_null($this->requestEntity))
         {
             $xml .= "<ApiRequest xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><ApiKey>{$apiKey}</ApiKey>";
-            $xsi = $this->requestEntity->getXsiType();
-            $xml .= "<Data";
-            $xml .= strlen($xsi) > 0 ? " xsi:type=\"{$xsi}\">" : ">";
-            $xml .= $this->requestEntity->toXml();
-            $xml .= "</Data>";
+          
+            $xmlContent = $this->requestEntity->toXml();
+            if (strpos($xmlContent, 'MultiData') !== false) {
+                $xml .= $xmlContent;
+            } else {
+                $xsi = $this->requestEntity->getXsiType();
+                $xml .= "<Data";
+                $xml .= strlen($xsi) > 0 ? " xsi:type=\"{$xsi}\">" : ">";
+                $xml .= $this->requestEntity->toXml();
+                $xml .= "</Data>";
+            }
+
             $xml .= '</ApiRequest>';
         }
         return $xml;

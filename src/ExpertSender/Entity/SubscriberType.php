@@ -45,6 +45,10 @@ class SubscriberType extends BaseType
             'type' => 'string',
             'xmlName' => 'Email',
         ),
+        'phone' => array(
+            'type' => 'string',
+            'xmlName' => 'Phone',
+        ),
         'firstname' => array(
             'type' => 'string',
             'xmlName' => 'Firstname',

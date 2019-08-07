@@ -12,12 +12,4 @@ use Zhmi\ExpertSender\Entity\SubscriberType as SubscriberEntity;
 class Subscribers extends Request
 {
     protected $endPoint = '/Api/Subscribers';
-
-    /**
-     * @param SubscriberEntity $subscriber Экземпляр класса, описывающий сущность Subscriber
-     */
-    function __construct(SubscriberEntity $subscriber)
-    {
-        parent::__construct($subscriber);
-    }
 }
