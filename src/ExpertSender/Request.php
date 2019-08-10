@@ -60,19 +60,22 @@ class Request
     public function getRequestBody($apiKey)
     {
         $xml = '';
-        if (!is_null($this->requestEntity))
-        {
-            $xml .= "<ApiRequest xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"><ApiKey>{$apiKey}</ApiKey>";
-          
+        if (!is_null($this->requestEntity)) {
+            $xml .= '<ApiRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema"><ApiKey>' . $apiKey . '</ApiKey>';
+
             $xmlContent = $this->requestEntity->toXml();
-            if (strpos($xmlContent, 'MultiData') !== false) {
+            if (strpos($xmlContent, '<MultiData>') !== false) {
                 $xml .= $xmlContent;
             } else {
                 $xsi = $this->requestEntity->getXsiType();
-                $xml .= "<Data";
-                $xml .= strlen($xsi) > 0 ? " xsi:type=\"{$xsi}\">" : ">";
+                if ($xsi) {
+                    $xml .= '<Data xsi:type="'. $xsi .'">';
+                } else {
+                    $xml .= '<Data>';
+                }
+
                 $xml .= $this->requestEntity->toXml();
-                $xml .= "</Data>";
+                $xml .= '</Data>';
             }
 
             $xml .= '</ApiRequest>';

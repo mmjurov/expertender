@@ -22,6 +22,21 @@ class Service {
     private $key = '';
 
     /**
+     * init class
+     * @param string $key
+     * @param string $uri
+     */
+    function __construct($key='', $uri='')
+    {
+        if ($key) {
+            $this->setKey( $key );
+        }
+        if ($uri) {
+            $this->setUri( $uri );
+        }
+    }
+
+    /**
      * @return string
      */
     public function getUri()
@@ -53,42 +68,46 @@ class Service {
         $this->key = $key;
     }
 
-    function __construct()
-    {
-        //TODO Сделать выборку настроек из опций CMS
-        $this->setUri( $this->uri );
-        $this->setKey( $this->key );
-    }
-
     /**
      * Производит обращение к сервису с помощью переданного в него заранее сформированного запроса
      * @param Request $request
      * @return Response
      * @throws ServiceException
      */
-    function call( Request $request , $debug = false)
+    function call(Request $request, $debug = false)
     {
-        $method     = $request->getRequestMethod();
-        $xmlBody      = $request->getRequestBody($this->key);
-        $urlPath    = $request->getRequestUrl(strlen($xmlBody) > 0 ? array() : array('apiKey' => $this->key));
-        $entity     = null;
-        $transport  = new Http();
+        // 接口方法
+        $method = $request->getRequestMethod();
 
-        if ($debug) {
-            echo $xmlBody;
-            die();
+        // 接口参数
+        $xmlBody = $request->getRequestBody($this->key);
+        $queryParams = array();
+        if (strlen($xmlBody) == 0) {
+            $queryParams['apiKey'] = $this->key;
         }
 
-        $url = trim($this->uri, '/') . '/' . trim($urlPath, '/');
+        // 接口地址
+        $url = trim($this->uri, '/') . $request->getRequestUrl($queryParams);
 
-        $responseBody = $transport->query($url, $method, $xmlBody, $http_response_header);
-        $responseEntity = $request->getResponseEntity();
-        $response = new Response($responseBody, $http_response_header, $responseEntity);
+        if ($debug) {
+            print_r([
+                'url' => $url,
+                'method' => $method,
+                'xmlBody' => $xmlBody
+            ]);
+            exit();
+        }
+
+        // 请求结果
+        $result = Http::query($url, $method, $xmlBody);
+
+        // 解析结果
+        $response = new Response($result['body'], $result['headers'], $request->getResponseEntity());
+
         $entity = $response->getEntity();
-        if ($entity instanceof ErrorMessageType)
-        {
+        if ($entity instanceof ErrorMessageType) {
             /** @var ErrorMessageType $entity */
-            throw new ServiceException($entity->Message, $entity->Code);
+            throw new \Exception($entity->Message, $entity->Code);
         }
 
         return $response;
