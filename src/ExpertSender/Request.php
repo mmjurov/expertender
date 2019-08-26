@@ -41,12 +41,12 @@ class Request
      */
     public function getRequestUrl(array $additionalParams = array())
     {
-        if (!empty($additionalParams))
+        if (!empty($additionalParams)) {
             $this->urlParams = array_merge($additionalParams, $this->urlParams);
+        }
 
         $query = http_build_query($this->urlParams);
-        if (strlen($query) > 0)
-        {
+        if (strlen($query) > 0) {
             $query = "?{$query}";
         }
         return $this->endPoint . $query;
@@ -90,8 +90,7 @@ class Request
     public function getRequestMethod()
     {
         $ns = explode('\\', get_class($this));
-        $method = strtoupper($ns[ count($ns)-2 ]);
-        return $method;
+        return strtoupper($ns[ count($ns)-2 ]);
     }
 
 }
