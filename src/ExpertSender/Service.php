@@ -108,6 +108,8 @@ class Service {
         if ($entity instanceof ErrorMessageType) {
             /** @var ErrorMessageType $entity */
             throw new \Exception($entity->Message, $entity->Code);
+        } else {
+            throw new \Exception(json_encode($result));
         }
 
         return $response;

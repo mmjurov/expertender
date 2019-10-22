@@ -11,14 +11,10 @@ class Transactionals extends Request
 
     public function __construct($id, BaseType $data)
     {
-        if (!is_int($id))
-        {
-            throw new \InvalidArgumentException('Incorrect transactional id');
-        }
-
+        $id = intval($id);
         if ($id <= 0)
         {
-            throw new \InvalidArgumentException('Incorrect transactional id');
+            throw new \InvalidArgumentException('param id must be a valid integer');
         }
 
         $this->endPoint .= "/{$id}";

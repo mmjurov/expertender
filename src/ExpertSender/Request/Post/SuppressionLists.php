@@ -10,12 +10,13 @@ class SuppressionLists extends Request
 
     public function __construct($id, $entry)
     {
-        if (!is_int($id))
+        $id = intval($id);
+        if ($id <= 0)
         {
-            throw new \InvalidArgumentException('Identifier must be a valid integer');
+            throw new \InvalidArgumentException('param id must be a valid integer');
         }
-        $this->endPoint .= '/' . $id;
 
+        $this->endPoint .= '/' . $id;
         $this->urlParams['entry'] = $entry;
     }
 

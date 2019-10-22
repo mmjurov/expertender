@@ -1,13 +1,14 @@
 <?php
 
-namespace Zhmi\ExpertSender\Request\Post;
+namespace App\Extensions\ExpertSender\Request\Put;
 
-use Zhmi\ExpertSender\BaseType;
-use Zhmi\ExpertSender\Request;
+use App\Extensions\ExpertSender\BaseType;
+use App\Extensions\ExpertSender\Request;
 
-class Triggers extends Request
+class Lists extends Request
 {
-    protected $endPoint = '/Api/Triggers';
+    protected $endPoint = '/Api/Lists';
+    protected $responseEntity = 'integer';
 
     public function __construct($id, BaseType $data)
     {

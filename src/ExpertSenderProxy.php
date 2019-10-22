@@ -134,7 +134,7 @@ class ExpertSenderProxy
             $listExportType->Properties = $exportProperties;
         }
 
-        $request =  new ExpertSender\Request\Post\ListExport( $listExportType );
+        $request = new ExpertSender\Request\Post\ListExport( $listExportType );
 
         // Making a request call
         $response = $this->service->call($request);
@@ -176,7 +176,7 @@ class ExpertSenderProxy
         $listExportType->ListId = intval($listId);
         $listExportType->Fields = $exportFields;
 
-        $request =  new ExpertSender\Request\Post\ListExport( $listExportType );
+        $request = new ExpertSender\Request\Post\ListExport( $listExportType );
 
         // Making a request call
         $response = $this->service->call($request);
@@ -394,6 +394,46 @@ class ExpertSenderProxy
             $entity = $response->getEntity();
             $error = is_object($entity) ? get_object_vars($entity) : $entity;
             throw new \Exception("createSubscriberList error: {$error}", $response->getCode());
+        }
+
+        return $response->getEntity();
+    }
+
+    /**
+     * 新建收件列表
+     * @author huangnie
+     * @email 980484578@qq.com
+     * @date 2019-08-20
+     * @param  integer $listId
+     * @param  string $listName
+     * @param  string $friendlyName
+     * @param  string $description
+     * @return integer
+     */
+    public function updateSubscriberList($listId, $listName, $friendlyName='', $description='')
+    {
+        // 休眠10毫秒
+        usleep(10000);
+
+        $listSetting = new ExpertSender\Entity\ListSettingsType();
+        $generalSetting = new ExpertSender\Entity\GeneralSettingsType();
+        $generalSetting->name = $listName;
+        $generalSetting->friendlyName = $friendlyName;
+        $generalSetting->description = $description;
+        $generalSetting->language = 'en-US';
+        $generalSetting->charset = 'UTF-8';
+
+        $listSetting->generalSettings = $generalSetting;
+ 
+        $request = new ExpertSender\Request\Put\Lists( $listId, $listSetting );
+
+        // Making a request call
+        $response = $this->service->call($request);
+
+        if (!$response->isOk()) {
+            $entity = $response->getEntity();
+            $error = is_object($entity) ? get_object_vars($entity) : $entity;
+            throw new \Exception("updateSubscriberList error: {$error}", $response->getCode());
         }
 
         return $response->getEntity();
