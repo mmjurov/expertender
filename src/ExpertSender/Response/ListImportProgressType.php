@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Extensions\ExpertSender\Response;
-use App\Extensions\ExpertSender\BaseType;
+namespace Zhmi\ExpertSender\Response;
+use Zhmi\ExpertSender\BaseType;
 
 /**
  * Class ListImportProgressType
- * @package App\Extensions\ExpertSender\Response
+ * @package Zhmi\ExpertSender\Response
  * @property string $Name
  * @property string $List
  * @property string $Url

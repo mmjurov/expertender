@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Extensions\ExpertSender\Response;
-use App\Extensions\ExpertSender\BaseType;
+namespace Zhmi\ExpertSender\Response;
+use Zhmi\ExpertSender\BaseType;
 
 /**
  * Class ListImportType
- * @package App\Extensions\ExpertSender\Response
+ * @package Zhmi\ExpertSender\Response
  * @property string $StartedAt example 2019-08-21T11:01:18
  * @property string $UpdatedAt example 2019-08-21T22:03:23
  * @property string $Status    example Completed
