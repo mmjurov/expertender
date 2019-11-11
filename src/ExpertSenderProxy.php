@@ -84,11 +84,11 @@ class ExpertSenderProxy
      */
     public function exportProgress($exportId)
     {
-        // 查询导入进度
-        $request = new ExpertSender\Request\Get\ExportProgress($exportId);
+       // 查询导入进度
+       $request = new ExpertSender\Request\Get\ExportProgress($exportId);
 
-        // Making a request call
-        $response = $this->service->call($request);
+       // Making a request call
+       $response = $this->service->call($request);
 
         if (!$response->isOk()) {
             $entity = $response->getEntity();
@@ -115,7 +115,7 @@ class ExpertSenderProxy
         ];
 
         $exportFields = [];
-        foreach ($subscriberFieldArr as $name) {
+        foreach ($segmentFieldArr as $name) {
             $exportFields[] = new ExpertSender\Entity\FieldType($name);
         }
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Extensions\ExpertSender\Request\Put;
+namespace Zhmi\ExpertSender\Request\Put;
 
-use App\Extensions\ExpertSender\BaseType;
-use App\Extensions\ExpertSender\Request;
+use Zhmi\ExpertSender\BaseType;
+use Zhmi\ExpertSender\Request;
 
 class Lists extends Request
 {

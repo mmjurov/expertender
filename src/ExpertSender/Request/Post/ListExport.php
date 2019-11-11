@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Extensions\ExpertSender\Request\Post;
+namespace Zhmi\ExpertSender\Request\Post;
 
-use App\Extensions\ExpertSender\Request;
+use Zhmi\ExpertSender\Request;
 
 class ListExport extends Request
 {

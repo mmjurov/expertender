@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Extensions\ExpertSender\Request\Get;
+namespace Zhmi\ExpertSender\Request\Get;
 
-use App\Extensions\ExpertSender\Request;
+use Zhmi\ExpertSender\Request;
 
 class ListImportProgress extends Request
 {

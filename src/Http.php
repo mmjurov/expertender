@@ -45,19 +45,4 @@ class Http {
             'used_microtime' => $used_microtime
         ];
     }
-
-    public static function post($url, $body, $timeout=600)
-    {
-        return self::query($url, 'POST', $body, $timeout);
-    }
-
-    public static function get($url, $data, $timeout=600)
-    {
-        return self::query($url . '?' . http_build_query($data), 'GET', null, $timeout);
-    }
-
-    public static function delete($url, $data, $timeout=600)
-    {
-        return self::query($url . '?' . http_build_query($data), 'DELETE', null, $timeout);
-    }
 }
