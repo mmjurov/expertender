@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Extensions\ExpertSender\Entity;
-use App\Extensions\ExpertSender\BaseType;
+namespace Zhmi\ExpertSender\Entity;
+use Zhmi\ExpertSender\BaseType;
 
 /**
  * Class ListImportSourceType
- * @package App\Extensions\ExpertSender\Entity
+ * @package Zhmi\ExpertSender\Entity
  * @property integer $Id
  * @property string $Name
  * @property string $FriendlyName

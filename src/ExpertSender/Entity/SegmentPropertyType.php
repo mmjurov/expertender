@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Extensions\ExpertSender\Entity;
+namespace Zhmi\ExpertSender\Entity;
 
-use App\Extensions\ExpertSender\BaseType;
+use Zhmi\ExpertSender\BaseType;
 
 /**
  * Class SegmentPropertyType
- * @package App\Extensions\ExpertSender\Entity
+ * @package Zhmi\ExpertSender\Entity
  * @property integer $Property
  */
 class SegmentPropertyType extends BaseType

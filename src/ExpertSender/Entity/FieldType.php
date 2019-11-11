@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Extensions\ExpertSender\Entity;
+namespace Zhmi\ExpertSender\Entity;
 
-use App\Extensions\ExpertSender\BaseType;
+use Zhmi\ExpertSender\BaseType;
 
 /**
  * Class FieldType
- * @package App\Extensions\ExpertSender\Entity
+ * @package Zhmi\ExpertSender\Entity
  * @property integer $id
  * @property string $value
  */

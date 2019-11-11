@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Extensions\ExpertSender\Entity;
-use App\Extensions\ExpertSender\BaseType;
+namespace Zhmi\ExpertSender\Entity;
+use Zhmi\ExpertSender\BaseType;
 
 /**
  * Class ListExportType
- * @package App\Extensions\ExpertSender\Entity
+ * @package Zhmi\ExpertSender\Entity
  * @property string $Type
  * @property integer $ListId
  * @property FieldType[] $Fields
