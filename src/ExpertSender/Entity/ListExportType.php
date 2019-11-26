@@ -6,34 +6,35 @@ use Zhmi\ExpertSender\BaseType;
 /**
  * Class ListExportType
  * @package Zhmi\ExpertSender\Entity
- * @property string $Type
- * @property integer $ListId
- * @property FieldType[] $Fields
+ * @property string $type
+ * @property integer $listId
+ * @property string[] $fields
+ * @property integer[] $properties
  */
 class ListExportType extends BaseType
 {
     protected $params = array(
-        'Type' => array(
+        'type' => array(
             'type' => 'string',
             'xmlName' => 'Type',
         ),
-        'ListId' => array(
+        'listId' => array(
             'type' => 'integer',
             'xmlName' => 'ListId',
         ),
-        'SegmentId' => array(
+        'segmentId' => array(
             'type' => 'integer',
             'xmlName' => 'SegmentId',
         ),
-        'Fields' => array(
-            'type' => 'App\\Extensions\\ExpertSender\\Entity\\FieldType',
-            'xmlName' => '',
+        'fields' => array(
+            'type' => 'string',
+            'xmlName' => 'Field',
             'unbound' => true,
             'unboundTag' => 'Fields'
         ),
-        'Properties' => array(
-            'type' => 'App\\Extensions\\ExpertSender\\Entity\\SegmentPropertyType',
-            'xmlName' => '',
+        'properties' => array(
+            'type' => 'integer',
+            'xmlName' => 'Property',
             'unbound' => true,
             'unboundTag' => 'Properties'
         ),
@@ -44,12 +45,12 @@ class ListExportType extends BaseType
      */
     public function __construct($type='', $listId=0, $segmentId=0, array $fields=[], array $properties=[])
     {
-        $this->Type = $type;
-        $this->ListId = $listId;
-        $this->SegmentId = $segmentId;
-        $this->Fields = $fields;
+        $this->type = $type;
+        $this->listId = $listId;
+        $this->segmentId = $segmentId;
+        $this->fields = $fields;
         if (count($properties) > 0) {
-            $this->Properties = $properties;
+            $this->properties = $properties;
         }
     }
 }

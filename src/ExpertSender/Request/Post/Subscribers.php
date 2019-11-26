@@ -6,7 +6,7 @@ use Zhmi\ExpertSender\Request;
 
 /**
  * Class Subscribers
- * @package Zhme\ExpertSender\Resource\Post
+ * @package Zhmi\ExpertSender\Resource\Post
  */
 class Subscribers extends Request
 {

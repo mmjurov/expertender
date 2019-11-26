@@ -15,7 +15,7 @@ use Zhmi\ExpertSender\BaseType;
 class ListImportSourceType extends BaseType
 {
     protected $params = array(
-        'Url' => array(
+        'url' => array(
             'type' => 'string',
             'xmlName' => 'Url',
         )

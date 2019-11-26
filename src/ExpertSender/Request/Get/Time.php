@@ -6,12 +6,15 @@ use Zhmi\ExpertSender\Request;
 
 /**
  * Class Time
- * @package Zhme\ExpertSender\Resource\Get
+ * @package Zhmi\ExpertSender\Resource\Get
  */
 class Time extends Request
 {
     protected $endPoint = '/Api/Time';
     protected $responseEntity = 'DateTime';
 
-    function __construct() {}
+    function __construct()
+    {
+        // 空构造函数， 只为改变传参约束
+    }
 }

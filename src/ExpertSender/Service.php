@@ -3,11 +3,10 @@
 namespace Zhmi\ExpertSender;
 
 use Zhmi\ExpertSender\Response\ErrorMessageType;
-use Zhmi\Http;
 
 /**
  * Класс, определяющий работу веб-сервиса
- * @package Zhme\ExpertSender
+ * @package Zhmi\ExpertSender
  */
 class Service {
 
@@ -104,17 +103,25 @@ class Service {
         // 解析结果
         $response = new Response($result['body'], $result['headers'], $request->getResponseEntity());
 
-        $entity = $response->getEntity();
+        // 若接口返回异常错误
+        $entity = $response->getResponseEntity();
         if ($entity instanceof ErrorMessageType) {
-            /** @var ErrorMessageType $entity */
-            throw new \Exception($entity->Message, $entity->Code);
-        } else {
-            throw new \Exception(json_encode($result));
+            if ($entity->Message) {
+                throw new \Exception("ReqError: {$entity->Message}, RequestBody: {$xmlBody}, ResposeBody: {$result['body']}", $entity->Code);
+            } else {
+                throw new \Exception("RequestBody: {$xmlBody}, ResposeBody: {$result['body']}");
+            }
+        }
+
+        // 若接口返回警告错误
+        if (!$response->isOk()) {
+            $error = is_object($entity) ? get_object_vars($entity) : $entity;
+            if (is_array($error)) {
+                $error = json_encode($error);
+            }
+            throw new \Exception("ApiError: {$error}", $response->getCode());
         }
 
         return $response;
     }
 }
-
-class ServiceException extends \Exception {}
-

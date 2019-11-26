@@ -1,4 +1,4 @@
-v<?php
+<?php
 
 namespace Zhmi\ExpertSender\Entity;
 use Zhmi\ExpertSender\BaseType;

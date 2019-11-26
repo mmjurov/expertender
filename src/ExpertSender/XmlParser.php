@@ -4,7 +4,7 @@ namespace Zhmi\ExpertSender;
 
 /**
  * Класс, который помогает десериализовывать XML в объект
- * @package Zhme\ExpertSender
+ * @package Zhmi\ExpertSender
  */
 class XmlParser
 {
@@ -14,7 +14,7 @@ class XmlParser
 
     public function __construct($rootObjectClass)
     {
-        $this->rootObjectClass = $rootObjectClass;
+        $this->rootObjectClass = $rootObjectClass ?? 'string';
 
         $this->stack = new \SplStack();
     }
@@ -50,8 +50,7 @@ class XmlParser
      */
     private function startElementHandler($parser, $name, array $attributes)
     {
-        if ($name == 'ApiResponse')
-        {
+        if ($name == 'ApiResponse') {
             return false;
         }
 
@@ -67,7 +66,9 @@ class XmlParser
     private function valueHandler($parser, $value)
     {
         $value = trim($value);
-        if (strlen($value) === 0) return false;
+        if (strlen($value) === 0) {
+            return false;
+        }
         $this->stack->top()->strData .= $value;
     }
 
@@ -79,29 +80,22 @@ class XmlParser
      */
     private function endElementHandler($parser, $name)
     {
-        if ($name == 'ApiResponse')
-        {
+        if ($name == 'ApiResponse') {
             return false;
         }
 
         $meta = $this->stack->pop();
 
-        if (!$this->stack->isEmpty())
-        {
-            if ($meta->propertyName !== '')
-            {
+        if (!$this->stack->isEmpty()) {
+            if ($meta->propertyName !== '') {
                 $parentObject = $this->getParentObject();
 
-                if ($parentObject)
-                {
+                if ($parentObject) {
                     $parentObject->{$meta->propertyName} = $this->getValueToAssign($meta);
                 }
-            }
-            else
-            {
+            } else {
                 $parentObject = $this->getParentObject($meta);
-                if ($parentObject instanceof Unbound)
-                {
+                if ($parentObject instanceof Unbound) {
                     $parentObject[] = $meta->phpObject;
                 }
             }
@@ -136,43 +130,33 @@ class XmlParser
         $meta->strData = '';
         $meta->unboundTag = '';
 
-        if (!$this->stack->isEmpty())
-        {
+        if (!$this->stack->isEmpty()) {
             $parentObject = $this->getParentObject();
 
-            if ($parentObject instanceof Unbound)
-            {
+            if ($parentObject instanceof Unbound) {
                 $meta->phpType = $parentObject->getExpectedType();
-            }
-            elseif ($parentObject)
-            {
+            } elseif ($parentObject) {
                 /** @var BaseType $parentObject */
                 $elementMeta = $parentObject->elementMeta($elementName);
-                if ($elementMeta)
-                {
+                if ($elementMeta) {
                     $meta = $elementMeta;
                 }
             }
-        }
-        else
-        {
+        } else {
             $meta->phpType = $this->rootObjectClass;
         }
 
         $meta->phpObject = $this->newPhpObject($meta);
 
-        /*if ($meta->phpObject)
-        {
-            foreach ($attributes as $attribute => $value)
-            {
-                $attributeMeta = $meta->phpObject->elementMeta($attribute);
-                if ($attributeMeta)
-                {
-                    $attributeMeta->strData = $value;
-                    $meta->phpObject->{$attributeMeta->propertyName} = $this->getValueToAssignToProperty($attributeMeta);
-                }
-            }
-        }*/
+        // if ($meta->phpObject) {
+        //     foreach ($attributes as $attribute => $value) {
+        //         $attributeMeta = $meta->phpObject->elementMeta($attribute);
+        //         if ($attributeMeta) {
+        //             $attributeMeta->strData = $value;
+        //             $meta->phpObject->{$attributeMeta->propertyName} = $this->getValueToAssignToProperty($attributeMeta);
+        //         }
+        //     }
+        // }
 
         return $meta;
     }
@@ -184,24 +168,22 @@ class XmlParser
      */
     private function newPhpObject($meta)
     {
-        $object = null;
-        switch ($meta->phpType) {
-            case 'integer':
-            case 'string':
-            case 'double':
-            case 'boolean':
-                break;
-            default:
-                $object = $meta->phpType !== '' ? new $meta->phpType() : null;
-        }
+        if ($meta->unbound) {
+            return new Unbound($meta->elementName, $meta->phpType);
+        } else {
+            $object = null;
+            switch ($meta->phpType) {
+                case 'integer':
+                case 'string':
+                case 'double':
+                case 'boolean':
+                    break;
+                default:
+                    $object = $meta->phpType !== '' ? new $meta->phpType() : null;
+            }
 
-        if ($meta->unbound)
-        {
-            $unbound = new Unbound($meta->elementName, $meta->phpType);
-            return $unbound;
+            return $object;
         }
-
-        return $object;
     }
 
     /**
@@ -211,12 +193,9 @@ class XmlParser
      */
     private function getValueToAssign($meta)
     {
-        if ($this->isSimplePhpType($meta))
-        {
+        if ($this->isSimplePhpType($meta)) {
             return $this->getValueToAssignToProperty($meta);
-        }
-        else
-        {
+        } else {
             $meta->phpObject->value = $meta->strData;
             return $meta->phpObject;
         }
@@ -229,8 +208,7 @@ class XmlParser
      */
     private function isSimplePhpType($meta)
     {
-        switch ($meta->phpType)
-        {
+        switch ($meta->phpType) {
             case 'integer':
             case 'string':
             case 'double':
@@ -249,8 +227,7 @@ class XmlParser
      */
     private function getValueToAssignToProperty($meta)
     {
-        switch ($meta->phpType)
-        {
+        switch ($meta->phpType) {
             case 'integer':
                 return (integer)$meta->strData;
             case 'double':

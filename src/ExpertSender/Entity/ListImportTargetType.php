@@ -15,11 +15,11 @@ use Zhmi\ExpertSender\BaseType;
 class ListImportTargetType extends BaseType
 {
     protected $params = array(
-        'Name' => array(
+        'name' => array(
             'type' => 'string',
             'xmlName' => 'Name',
         ),
-        'SubscriberList' => array(
+        'subscriberList' => array(
             'type' => 'integer',
             'xmlName' => 'SubscriberList',
         ),

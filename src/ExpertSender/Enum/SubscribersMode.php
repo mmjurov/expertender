@@ -5,7 +5,7 @@ namespace Zhmi\ExpertSender\Enum;
 /**
  * Тип, содержащий допустимые значения метода обновления для постинга информации о подписчике (Post/Subscribers)
  * Class SubscribersOption
- * @package Zhme\ExpertSender\Enum
+ * @package Zhmi\ExpertSender\Enum
  */
 class SubscribersMode
 {

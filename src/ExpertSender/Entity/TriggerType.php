@@ -8,7 +8,7 @@ use Zhmi\ExpertSender\BaseType;
  * Сущность, содержащая необходимые поля для отправки
  *
  * Class TriggerType
- * @package Zhme\ExpertSender\Entity
+ * @package Zhmi\ExpertSender\Entity
  * @property ReceiverType[] $receivers
  * @property string $type
  */
@@ -18,7 +18,7 @@ class TriggerType extends BaseType
 
     protected $params = array(
         'receivers' => array(
-            'type' => 'Zhmi\\ExpertSender\\Entity\\ReceiverType',
+            'type' => 'App\\Extensions\\ExpertSender\\Entity\\ReceiverType',
             'xmlName' => 'Receiver',
             'unbound' => true,
             'unboundTag' => 'Receivers'

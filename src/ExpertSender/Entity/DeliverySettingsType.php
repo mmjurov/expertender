@@ -42,7 +42,7 @@ class DeliverySettingsType extends BaseType
             'xmlName' => 'TimeOptimizationPeriod',
         ),
         'channels' => array(
-            'type' => 'Zhmi\\ExpertSender\\Entity\\ChannelType',
+            'type' => 'App\\Extensions\\ExpertSender\\Entity\\ChannelType',
             'xmlName' => 'Channel',
             'unbound' => true,
             'unboundTag' => 'Channels'

@@ -13,8 +13,7 @@ class ListImportProgress extends Request
     public function __construct($importId)
     {
     	$importId = intval($importId);
-        
-        if (!$importId) {
+        if ($importId <= 0) {
             throw new \InvalidArgumentException('import id must be an nor zero number');
         }
 

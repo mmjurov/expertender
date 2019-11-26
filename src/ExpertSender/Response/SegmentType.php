@@ -20,5 +20,11 @@ class SegmentType extends BaseType
             'type' => 'string',
             'xmlName' => 'Name',
         ),
+        'Tags' => array(
+            'type' => 'App\\Extensions\\ExpertSender\\Response\\SegmentTagType',
+            'xmlName' => 'Tags',
+            'unbound' => true,
+            'unboundTag' => 'Tag'
+        ),
     );
 }

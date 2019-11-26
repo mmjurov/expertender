@@ -12,7 +12,7 @@ class SnoozedSubscribersType extends BaseType
 {
     protected $params = array(
         'SnoozedSubscribers' => array(
-            'type' => 'Zhmi\\ExpertSender\\Response\\SnoozedSubscriberType',
+            'type' => 'App\\Extensions\\ExpertSender\\Response\\SnoozedSubscriberType',
             'xmlName' => 'SnoozedSubscribers',
             'unbound' => true,
             'unboundTag' => 'SnoozedSubscriber'

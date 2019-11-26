@@ -5,7 +5,7 @@ namespace Zhmi\ExpertSender\Enum;
 /**
  * Тип, содержащий допустимые значения опции для получения информации о подписчике (Get/Subscribers)
  * Class SubscribersOption
- * @package Zhme\ExpertSender\Enum
+ * @package Zhmi\ExpertSender\Enum
  */
 class SubscribersOption
 {

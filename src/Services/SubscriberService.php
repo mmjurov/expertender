@@ -1,6 +1,6 @@
 <?php
 
-namespace Zhmi;
+namespace Zhmi\Services;
 
 use Zhmi\ExpertSender;
 
@@ -10,93 +10,25 @@ use Zhmi\ExpertSender;
  * @email 980484578@qq.com
  * @date 2019-08-20
  */
-class ExpertSenderProxy
-{
-    /**
-     * ExpertSender service
-     * @var null
-     */
-    private $service = null;
-
-    /**
-     * Execute the console command.
-     * @author huangnie
-     * @email 980484578@qq.com
-     * @date 2019-08-05
-     * @return mixed
-     */
-    public function __construct($apiKey='', $apiUri='')
-    { 
-        $this->service = new ExpertSender\Service($apiKey, $apiUri);        
-    }
-
-    /**
-     * @author huangnie
-     * @email 980484578@qq.com
-     * @date 2019-08-20
-     * @return string
-     */
-    public function getUri()
-    {
-        return $this->service->getUri();
-    }
-
-    /**
-     * @author huangnie
-     * @email 980484578@qq.com
-     * @date 2019-08-20
-     * @param string $uri
-     */
-    public function setUri($uri)
-    {
-        $this->service->setUri($uri);
-    }
-
-    /**
-     * @author huangnie
-     * @email 980484578@qq.com
-     * @date 2019-08-20
-     * @return string
-     */
-    public function getKey()
-    {
-        return $this->service->getKey();
-    }
-
-    /**
-     * @author huangnie
-     * @email 980484578@qq.com
-     * @date 2019-08-20
-     * @param string $key
-     */
-    public function setKey($key)
-    {
-        $this->service->setKey($key);
-    }
-
+class SubscriberService extends AbstractService
+{ 
     /**
      * 导出进度
      * @author huangnie
      * @email 980484578@qq.com
      * @date 2019-08-22
-     * @param  inter $importId
+     * @param  integer $importId
      * @return mixed
      */
     public function exportProgress($exportId)
     {
-       // 查询导入进度
-       $request = new ExpertSender\Request\Get\ExportProgress($exportId);
+        // 查询导入进度
+        $request = new ExpertSender\Request\Get\ExportProgress($exportId);
 
-       // Making a request call
-       $response = $this->service->call($request);
+        // Making a request call
+        $response = $this->service->call($request);
 
-        if (!$response->isOk()) {
-            $entity = $response->getEntity();
-            $error = is_object($entity) ? get_object_vars($entity) : $entity;
-            throw new \Exception("importSubscriberListProgress error: {$error}", $response->getCode());
-        }
-
-        return $response->getEntity();
+        return $response->getResponseEntity();
     }
 
      /**
@@ -104,48 +36,30 @@ class ExpertSenderProxy
      * @author huangnie
      * @email 980484578@qq.com
      * @date 2019-08-22
-     * @param  inter $importId
+     * @param  integer $importId
      * @return mixed
      */
-    public function exportSegmentList($segmentId)
+    public function exportSegment($segmentId, array $properties=[])
     {
-        $segmentFieldArr = [
+        $listExportType = new ExpertSender\Entity\ListExportType();
+        $listExportType->type = 'Segment';
+        $listExportType->segmentId = intval($segmentId);
+        $listExportType->fields = [
             'Id',           // 明细ID
             'Name',         // 明细名称
         ];
 
-        $exportFields = [];
-        foreach ($segmentFieldArr as $name) {
-            $exportFields[] = new ExpertSender\Entity\FieldType($name);
+        $properties = array_unique(array_filter($properties));
+        if (count($properties) > 0) {
+            $listExportType->properties = $properties;
         }
 
-        $segmentPropertyArr = [];
-
-        $exportProperties = [];
-        foreach ($segmentPropertyArr as $value) {
-            $exportProperties[] = new ExpertSender\Entity\SegmentPropertyType($value);
-        }
-
-        $listExportType = new ExpertSender\Entity\ListExportType();
-        $listExportType->Type = 'Segment';
-        $listExportType->SegmentId = intval($segmentId);
-        $listExportType->Fields = $exportFields;
-        if (count($exportProperties) > 0) {
-            $listExportType->Properties = $exportProperties;
-        }
-
-        $request = new ExpertSender\Request\Post\ListExport( $listExportType );
+        $request =  new ExpertSender\Request\Post\ListExport( $listExportType );
 
         // Making a request call
         $response = $this->service->call($request);
 
-        if (!$response->isOk()) {
-            $entity = $response->getEntity();
-            $error = is_object($entity) ? get_object_vars($entity) : $entity;
-            throw new \Exception("exportSegmentList error: {$error}", $response->getCode());
-        }
-
-        return $response->getEntity();
+        return $response->getResponseEntity();
     }
 
     /**
@@ -153,41 +67,38 @@ class ExpertSenderProxy
      * @author huangnie
      * @email 980484578@qq.com
      * @date 2019-08-22
-     * @param  inter $importId
+     * @param  integer $importId
      * @return mixed
      */
-    public function exportSubscriberList($listId)
+    public function exportList($listId)
     {
-       $subscriberFieldArr = [
+        $listExportType = new ExpertSender\Entity\ListExportType();
+        $listExportType->type = 'List';
+        $listExportType->listId = intval($listId);
+        $listExportType->fields = [
             'Email',        // 收件人email
             'FirstName',    // 收件人名字
             'LastName',     // 收件人姓氏
             'Vendor',       // 收件人来源
             'TrackingCode', // 收件人加入列表中时追踪代码
+            'GeoCountry',   // 收件人上次动作/行为 IP地址所对应的国家
+            'GeoState',     // 收件人上次动作/行为 IP地址所对应的省市自治区
+            'GeoCity',      // 收件人上次动作/行为 IP地址所对应的城市
+            'GeoZipCode',   // 收件人上次动作/行为 IP地址所对应的邮编
+            'LastActivity', // 收件人上次动作/行为 发生的时间 (点击, 打开, 进入个人中心等等)
+            'LastMessage',  // 上次发送给收件人消息的时间
+            'LastEmail',    // 上次发送给收件人消息的日期
+            'LastOpenEmail',    // 收件人上次打开邮件的时间
+            'LastClickEmail',   // 收件人上次点击邮件某一链接
+            'SubscriptionDate', // 收件人被添加至列表的日期(如果导出的类型是收件人细分，那么此处就是收件人被加入后台数据库的时间).
         ];
 
-        $exportFields = [];
-        foreach ($subscriberFieldArr as $name) {
-            $exportFields[] = new ExpertSender\Entity\FieldType($name);
-        }
-
-        $listExportType = new ExpertSender\Entity\ListExportType();
-        $listExportType->Type = 'List';
-        $listExportType->ListId = intval($listId);
-        $listExportType->Fields = $exportFields;
-
-        $request = new ExpertSender\Request\Post\ListExport( $listExportType );
+        $request =  new ExpertSender\Request\Post\ListExport( $listExportType );
 
         // Making a request call
         $response = $this->service->call($request);
 
-        if (!$response->isOk()) {
-            $entity = $response->getEntity();
-            $error = is_object($entity) ? get_object_vars($entity) : $entity;
-            throw new \Exception("exportSubscriberList error: {$error}", $response->getCode());
-        }
-
-        return $response->getEntity();
+        return $response->getResponseEntity();
     }
 
     /**
@@ -195,10 +106,10 @@ class ExpertSenderProxy
      * @author huangnie
      * @email 980484578@qq.com
      * @date 2019-08-22
-     * @param  inter $importId
+     * @param  integer $importId
      * @return mixed
      */
-    public function importSubscriberListProgress($importId)
+    public function importListProgress($importId)
     {
         // 查询导入进度
         $request = new ExpertSender\Request\Get\ListImportProgress($importId);
@@ -206,13 +117,7 @@ class ExpertSenderProxy
         // Making a request call
         $response = $this->service->call($request);
 
-        if (!$response->isOk()) {
-            $entity = $response->getEntity();
-            $error = is_object($entity) ? get_object_vars($entity) : $entity;
-            throw new \Exception("importSubscriberListProgress error: {$error}", $response->getCode());
-        }
-
-        return $response->getEntity();
+        return $response->getResponseEntity();
     }
 
     /**
@@ -225,18 +130,18 @@ class ExpertSenderProxy
      * @param  string $targetListName
      * @return mixed
      */
-    public function importSubscriberList($downloadUrl, $targetListId, $targetListName)
+    public function importList($downloadUrl, $targetListId, $targetListName)
     {
         $listSource = new ExpertSender\Entity\ListImportSourceType();
-        $listSource->Url = $downloadUrl;
+        $listSource->url = $downloadUrl;
         
         $listTarget = new ExpertSender\Entity\ListImportTargetType();
-        $listTarget->Name = $targetListName;
-        $listTarget->SubscriberList = $targetListId;
+        $listTarget->name = $targetListName;
+        $listTarget->subscriberList = $targetListId;
 
         $listImportType = new ExpertSender\Entity\ListImportType();
-        $listImportType->Source = $listSource;
-        $listImportType->Target = $listTarget;
+        $listImportType->source = $listSource;
+        $listImportType->target = $listTarget;
 
         // Initialize request with Data wrapper with entity
         $request = new ExpertSender\Request\Post\ListImport( $listImportType );
@@ -244,13 +149,7 @@ class ExpertSenderProxy
         // Making a request call
         $response = $this->service->call($request);
 
-        if (!$response->isOk()) {
-            $entity = $response->getEntity();
-            $error = is_object($entity) ? get_object_vars($entity) : $entity;
-            throw new \Exception("importParentSubscriberList error: {$error}", $response->getCode());
-        }
-
-        return $response->getEntity();
+        return $response->getResponseEntity();
     }
 
     /**
@@ -258,12 +157,12 @@ class ExpertSenderProxy
      * @author huangnie
      * @email 980484578@qq.com
      * @date 2019-08-20
-     * @param  inter $listId
+     * @param  integer $listId
      * @param  string $email
      * @param  array  $option
      * @return mixed
      */
-    public function buildSubscriberListEntity($listId, $email, array $option=[])
+    public function buildSubscriberEntity($listId, $email, array $option=[])
     {
         // Create entity with it fields
         // If want set phone, the SMS channel has to be activated to use element'Phone'
@@ -301,31 +200,50 @@ class ExpertSenderProxy
      * 添加一个收件人
      * @author huangnie
      * @email 980484578@qq.com
+     * @date 2019-11-22
+     * 
+     * @param  string $identifier 收件人ID 或 收件人email 
+     * @param  integer $listId
+     * @return mixed
+     */
+    public function deleteOneSubscriber($identifier, $listId=0)
+    {
+        if (!$identifier) {
+            throw new \Exception("param error: identifier must not be empty", 400);
+        }
+
+        // Initialize request with Data wrapper with entity
+        $request = new ExpertSender\Request\Delete\Subscribers( $identifier, $listId );
+
+        // Making a request call
+        $response = $this->service->call($request);
+
+        return true;
+    }
+
+    /**
+     * 添加一个收件人
+     * @author huangnie
+     * @email 980484578@qq.com
      * @date 2019-08-20
-     * @param  inter $listId
+     * @param  integer $listId
      * @param  string $email
      * @param  array  $option
      * @return mixed
      */
-    public function pushSubscriberData($listId, $email, array $option)
+    public function addOneSubscriber($listId, $email, array $option)
     {
         if (!$listId || !$email) {
             throw new \Exception("param error: listId or email is none", 400);
         }
 
-        $subscriberEntity = $this->buildSubscriberListEntity($listId, $email, $option);
+        $subscriberEntity = $this->buildSubscriberEntity($listId, $email, $option);
 
         // Initialize request with Data wrapper with entity
         $request = new ExpertSender\Request\Post\Subscribers( $subscriberEntity );
 
         // Making a request call
         $response = $this->service->call($request);
-
-        if (!$response->isOk()) {
-            $entity = $response->getEntity();
-            $error = is_object($entity) ? get_object_vars($entity) : $entity;
-            throw new \Exception("pushSubscriberData error: {$error}", $response->getCode());
-        }
 
         return true;
     }
@@ -338,7 +256,7 @@ class ExpertSenderProxy
      * @param  array $subscriberArr
      * @return mixed
      */
-    public function pushSubscriberMultiData(array $subscriberArr)
+    public function addMultiSubscribers(array $subscriberArr)
     {
         $subscriberMultiData = new ExpertSender\Entity\SubscriberMultiDataType();
         $subscriberMultiData->subscribers = $subscriberArr;
@@ -348,12 +266,6 @@ class ExpertSenderProxy
 
         // Making a request call
         $response = $this->service->call($request);
-
-        if (!$response->isOk()) {
-            $entity = $response->getEntity();
-            $error = is_object($entity) ? get_object_vars($entity) : $entity;
-            throw new \Exception("pushSubscriberMultiData error: {$error}", $response->getCode());
-        }
 
         return true;
     }
@@ -366,13 +278,10 @@ class ExpertSenderProxy
      * @param  string $listName
      * @param  string $friendlyName
      * @param  string $description
-     * @return inter
+     * @return integer
      */
-    public function createSubscriberList($listName, $friendlyName='', $description='')
+    public function createList($listName, $friendlyName='', $description='')
     {
-        // 休眠10毫秒
-        usleep(10000);
-
         $listSetting = new ExpertSender\Entity\ListSettingsType();
         $generalSetting = new ExpertSender\Entity\GeneralSettingsType();
         $generalSetting->name = $listName;
@@ -390,13 +299,7 @@ class ExpertSenderProxy
         // Making a request call
         $response = $this->service->call($request);
 
-        if (!$response->isOk()) {
-            $entity = $response->getEntity();
-            $error = is_object($entity) ? get_object_vars($entity) : $entity;
-            throw new \Exception("createSubscriberList error: {$error}", $response->getCode());
-        }
-
-        return $response->getEntity();
+        return $response->getResponseEntity();
     }
 
     /**
@@ -410,11 +313,8 @@ class ExpertSenderProxy
      * @param  string $description
      * @return integer
      */
-    public function updateSubscriberList($listId, $listName, $friendlyName='', $description='')
+    public function updateList($listId, $listName, $friendlyName='', $description='')
     {
-        // 休眠10毫秒
-        usleep(10000);
-
         $listSetting = new ExpertSender\Entity\ListSettingsType();
         $generalSetting = new ExpertSender\Entity\GeneralSettingsType();
         $generalSetting->name = $listName;
@@ -430,13 +330,7 @@ class ExpertSenderProxy
         // Making a request call
         $response = $this->service->call($request);
 
-        if (!$response->isOk()) {
-            $entity = $response->getEntity();
-            $error = is_object($entity) ? get_object_vars($entity) : $entity;
-            throw new \Exception("updateSubscriberList error: {$error}", $response->getCode());
-        }
-
-        return $response->getEntity();
+        return $response->getResponseEntity();
     }
 
     /**
@@ -446,7 +340,7 @@ class ExpertSenderProxy
      * @date 2019-08-20
      * @return array
      */
-    public function getSubscriberList()
+    public function getList()
     {
         $request = new ExpertSender\Request\Get\Lists();
         
@@ -454,11 +348,28 @@ class ExpertSenderProxy
         $response = $this->service->call($request);
 
         if (!$response->isOk()) {
-            $entity = $response->getEntity();
+            $entity = $response->getResponseEntity();
             $error = is_object($entity) ? get_object_vars($entity) : $entity;
-            throw new \Exception("getSubscriberList error: {$error}", $response->getCode());
+            throw new \Exception("Subscriber:getList error: {$error}", $response->getCode());
         }
 
-        return $response->getEntity();
+        return $response->getResponseEntity();
+    }
+
+    /**
+     * 获取明细列表
+     * @author huangnie
+     * @email 980484578@qq.com
+     * @date 2019-09-03
+     * @return array
+     */
+    public function getSegment()
+    {
+        $request = new ExpertSender\Request\Get\Segments();
+
+        // Making a request call
+        $response = $this->service->call($request);
+
+        return $response->getResponseEntity();
     }
 }

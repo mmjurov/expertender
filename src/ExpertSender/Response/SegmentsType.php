@@ -12,7 +12,7 @@ class SegmentsType extends BaseType
 {
     protected $params = array(
         'Segments' => array(
-            'type' => 'Zhmi\\ExpertSender\\Response\\SegmentType',
+            'type' => 'App\\Extensions\\ExpertSender\\Response\\SegmentType',
             'xmlName' => 'Segments',
             'unbound' => true,
             'unboundTag' => 'Segment'

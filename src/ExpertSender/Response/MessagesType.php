@@ -12,7 +12,7 @@ class MessagesType extends BaseType
 {
     protected $params = array(
         'Messages' => array(
-            'type' => 'Zhmi\\ExpertSender\\Response\\MessageType',
+            'type' => 'App\\Extensions\\ExpertSender\\Response\\MessageType',
             'xmlName' => 'Messages',
             'unbound' => true,
             'unboundTag' => 'Message'

@@ -18,7 +18,7 @@ class PropertyType extends BaseType
             'xmlName' => 'Id'
         ),
         'value' => array(
-            'type' => 'Zhmi\\ExpertSender\\Entity\\PropertyValueType',
+            'type' => 'App\\Extensions\\ExpertSender\\Entity\\PropertyValueType',
         ),
     );
 

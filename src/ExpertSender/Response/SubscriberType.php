@@ -5,7 +5,7 @@ use Zhmi\ExpertSender\BaseType;
 
 /**
  * Class SubscriberType
- * @package Zhme\ExpertSender\Response
+ * @package Zhmi\ExpertSender\Response
  * @property boolean $BlackList
  * @property StateOnListType[] $StateOnLists
  * @property SuppressionListType[] $SuppressionLists
@@ -23,13 +23,13 @@ class SubscriberType extends BaseType
             'xmlName' => 'BlackList'
         ),
         'StateOnLists' => array(
-            'type' => 'Zhmi\\ExpertSender\\Response\\StateOnListType',
+            'type' => 'App\\Extensions\\ExpertSender\\Response\\StateOnListType',
             'xmlName' => 'StateOnLists',
             'unbound' => true,
             'unboundTag' => 'StateOnList'
         ),
         'SuppressionLists' => array(
-            'type' => 'Zhmi\\ExpertSender\\Response\\SuppressionListType',
+            'type' => 'App\\Extensions\\ExpertSender\\Response\\SuppressionListType',
             'xmlName' => 'SuppressionLists',
             'unbound' => true,
             'unboundTag' => 'SuppressionList'
@@ -51,7 +51,7 @@ class SubscriberType extends BaseType
             'xmlName' => 'Ip',
         ),
         'Properties' => array(
-            'type' => 'Zhmi\\ExpertSender\\Response\\PropertyType',
+            'type' => 'App\\Extensions\\ExpertSender\\Response\\PropertyType',
             'xmlName' => 'Properties',
             'unbound' => true,
             'unboundTag' => 'Property'

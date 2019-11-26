@@ -4,27 +4,34 @@ namespace Zhmi\ExpertSender;
 
 /**
  * Базовый класс для всех запросов
- * @package Zhme\ExpertSender
+ * @package Zhmi\ExpertSender
  */
 class Request
 {
     /**
      * @var string Конечная точка веб-сервиса для запроса
      */
-    protected $endPoint         = '/Api';
+    protected $endPoint = '/Api';
 
     /**
      * @var array Массив параметров, которые попадут в URL
      */
-    protected $urlParams        = array();
-    //protected $propertyTypes    = array();
-    private   $requestEntity    = null;
-    protected $responseEntity   = null;
+    protected $urlParams = array();
 
-    public function getResponseEntity()
-    {
-        return $this->responseEntity;
-    }
+    /**
+     * 提交数据结构
+     *
+     * @var null
+     */
+    protected $responseEntity = null;
+
+    /**
+     * 返回数据结构
+     *
+     * @var null
+     */
+    private $requestEntity = null;
+
 
     /**
      * @param BaseType $entity Сущность, которую нужно исопльзовать при построении запроса с xml
@@ -32,6 +39,16 @@ class Request
     function __construct(BaseType $entity)
     {
         $this->requestEntity = $entity;
+    }
+
+    /**
+     * 请求数据结构
+     *
+     * @return [type] [description]
+     */
+    public function getResponseEntity()
+    {
+        return $this->responseEntity;
     }
 
     /**
@@ -45,11 +62,11 @@ class Request
             $this->urlParams = array_merge($additionalParams, $this->urlParams);
         }
 
-        $query = http_build_query($this->urlParams);
-        if (strlen($query) > 0) {
-            $query = "?{$query}";
+        if (count($this->urlParams) > 0) {
+            return $this->endPoint . '?' . http_build_query($this->urlParams);
+        } else {
+            return $this->endPoint;
         }
-        return $this->endPoint . $query;
     }
 
     /**
@@ -64,7 +81,7 @@ class Request
             $xml .= '<ApiRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema"><ApiKey>' . $apiKey . '</ApiKey>';
 
             $xmlContent = $this->requestEntity->toXml();
-            if (strpos($xmlContent, '<MultiData>') !== false) {
+            if ($this->requestEntity->getPosition() == 'root') {
                 $xml .= $xmlContent;
             } else {
                 $xsi = $this->requestEntity->getXsiType();

@@ -6,7 +6,7 @@ use Zhmi\ExpertSender\BaseType;
 
 /**
  * Class ReceiverType
- * @package Zhme\ExpertSender\Entity
+ * @package Zhmi\ExpertSender\Entity
  * @property string $email
  * @property int $id
  * @property int $listId

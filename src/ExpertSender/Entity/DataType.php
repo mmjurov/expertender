@@ -15,7 +15,7 @@ class DataType extends BaseType
 {
     protected $params = array(
         'data' => array(
-            'type' => 'Zhmi\\ExpertSender\\BaseType',
+            'type' => 'App\\Extensions\\ExpertSender\\BaseType',
             'xmlName' => 'Data',
         ),
         'type' => array(

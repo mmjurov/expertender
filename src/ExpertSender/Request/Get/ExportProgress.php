@@ -13,8 +13,7 @@ class ExportProgress extends Request
     public function __construct($exportId)
     {
     	$exportId = intval($exportId);
-        
-        if (!$exportId) {
+        if ($exportId <= 0) {
             throw new \InvalidArgumentException('export id must be an nor zero number');
         }
 

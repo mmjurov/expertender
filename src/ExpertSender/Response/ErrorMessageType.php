@@ -6,7 +6,7 @@ use Zhmi\ExpertSender\BaseType;
 
 /**
  * Class ErrorMessageType
- * @package Zhme\ExpertSender\Response
+ * @package Zhmi\ExpertSender\Response
  * @property integer $Code
  * @property string $Message
  */

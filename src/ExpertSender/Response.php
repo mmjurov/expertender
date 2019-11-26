@@ -4,7 +4,7 @@ namespace Zhmi\ExpertSender;
 
 /**
  * Базовый класс для всех ответов
- * @package Zhme\ExpertSender
+ * @package Zhmi\ExpertSender
  */
 class Response
 {
@@ -50,7 +50,7 @@ class Response
         $responseEntity = null;
         if ($body !== null)
         {
-            $expectedEntity = strpos($body, 'ErrorMessage') !== false ? 'Zhmi\\ExpertSender\\Response\\ErrorMessageType' : $responseEntityType;
+            $expectedEntity = strpos($body, 'ErrorMessage') !== false ? 'App\\Extensions\\ExpertSender\\Response\\ErrorMessageType' : $responseEntityType;
             $responseEntity = (new XmlParser( $expectedEntity ))->parse( $body );
         }
 
@@ -73,7 +73,7 @@ class Response
         return $this->responseCode;
     }
 
-    public function getEntity()
+    public function getResponseEntity()
     {
         return $this->responseEntity;
     }
