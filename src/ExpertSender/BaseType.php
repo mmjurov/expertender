@@ -292,22 +292,27 @@ class BaseType
                 }
             }
 
-            if(!$value) {
-                $propInfo = $this->getPropertyInfo($name);
-                if (isset($propInfo[ 'unbound' ]) && $propInfo[ 'unbound' ] === true) {
-                    $value = [];
-                } else if (isset($propInfo[ 'type' ])) {
-                    switch ($propInfo[ 'type' ]) {
-                        case 'integer':
-                            $value = 0;
-                            break;
-                        case 'string':
-                            $value = '';
-                            break;
-                        case 'boolean':
-                            $value = false;
-                            break;
-                    }
+            $propInfo = $this->getPropertyInfo($name);
+            if (isset($propInfo[ 'type' ])) {
+                switch ($propInfo[ 'type' ]) {
+                    case 'DateTime':
+                        /** @var \DateTime $val */
+                        $value = $value instanceof \DateTime ? $value->format('Y-m-d H:i:s') : string($value);
+                        break;
+                    case 'integer':
+                        $value = intval($value);
+                        break;
+                    case 'boolean':
+                        $value = boolval($value);
+                        break;
+                    case 'string':
+                        $value = strval($value);
+                        break;
+                    default:
+                        if (!$value && isset($propInfo[ 'unbound' ]) && $propInfo[ 'unbound' ] === true) {
+                            $value = [];
+                        }
+                        break;
                 }
             }
 

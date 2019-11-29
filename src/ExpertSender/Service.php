@@ -103,23 +103,23 @@ class Service {
         // 解析结果
         $response = new Response($result['body'], $result['headers'], $request->getResponseEntity());
 
-        // 若接口返回异常错误
+        // 若接口返回警告(或错误)
         $entity = $response->getResponseEntity();
         if ($entity instanceof ErrorMessageType) {
             if ($entity->Message) {
-                throw new \Exception("ReqError: {$entity->Message}, RequestBody: {$xmlBody}, ResposeBody: {$result['body']}", $entity->Code);
+                throw new \Exception($entity->Message, $entity->Code);
             } else {
-                throw new \Exception("RequestBody: {$xmlBody}, ResposeBody: {$result['body']}");
+                throw new \Exception("ApiWarning: Unknown, RequestBody={$xmlBody}, ResposeBody={$result['body']}", $response->getCode());
             }
         }
 
-        // 若接口返回警告错误
+        // 若请求返回失败(或异常)
         if (!$response->isOk()) {
-            $error = is_object($entity) ? get_object_vars($entity) : $entity;
-            if (is_array($error)) {
-                $error = json_encode($error);
+            $warning = is_object($entity) ? get_object_vars($entity) : $entity;
+            if (is_array($warning)) {
+                $warning = json_encode($warning);
             }
-            throw new \Exception("ApiError: {$error}", $response->getCode());
+            throw new \Exception("ReqFailure: {$warning}", $response->getCode());
         }
 
         return $response;
