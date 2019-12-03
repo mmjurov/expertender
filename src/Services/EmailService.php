@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\ExpertSender;
+namespace Zhmi\Services;
 
 use Zhmi\ExpertSender;
 
@@ -65,7 +65,7 @@ class EmailService extends AbstractService
      * @email 980484578@qq.com
      * @date 2019-11-22
      *
-     * @param   array  $recieves           目标收件人参数[列表或明细或测试对象或禁止]
+     * @param   array  $recieves          目标收件人参数[列表或明细或测试对象或禁止]
      * @param   string $fromName          发送方名称
      * @param   string $fromEmail         发送方邮箱
      * @param   string $subject           主题
@@ -107,6 +107,9 @@ class EmailService extends AbstractService
         $content->fromEmail = $fromEmail;
         $content->subject = $subject;
         $content->html = $html;
+        if ($tags > 0) {
+            $content->tags = $tags;
+        }
         if ($header > 0) {
             $content->header = $header;
         }

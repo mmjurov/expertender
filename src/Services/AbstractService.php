@@ -1,6 +1,6 @@
 <?php
 
-namespace Zhmi\Services\ExpertSender;
+namespace Zhmi\Services;
 
 use Zhmi\ExpertSender;
 
