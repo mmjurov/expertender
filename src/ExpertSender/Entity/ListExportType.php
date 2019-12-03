@@ -8,6 +8,7 @@ use Zhmi\ExpertSender\BaseType;
  * @package Zhmi\ExpertSender\Entity
  * @property string $type
  * @property integer $listId
+ * @property integer $segmentId
  * @property string[] $fields
  * @property integer[] $properties
  */

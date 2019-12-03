@@ -6,11 +6,8 @@ use Zhmi\ExpertSender\BaseType;
 /**
  * Class ListImportType
  * @package Zhmi\ExpertSender\Entity
- * @property integer $Id
- * @property string $Name
- * @property string $FriendlyName
- * @property string $Language
- * @property string $OptInMode
+ * @property string $source
+ * @property string $target
  */
 class ListImportType extends BaseType
 {
