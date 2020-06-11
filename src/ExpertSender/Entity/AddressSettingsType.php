@@ -8,10 +8,10 @@ use Zhmi\ExpertSender\BaseType;
  * Class AddressSettingsType
  * @package Zhmi\ExpertSender\Entity
  * @property string $company
- * @property string $address
- * @property string $address2
  * @property string $city
  * @property string $zipPostalCode
+ * @property string $address
+ * @property string $address2
  */
 class AddressSettingsType extends BaseType
 {
@@ -20,14 +20,6 @@ class AddressSettingsType extends BaseType
             'type' => 'string',
             'xmlName' => 'Company',
         ),
-        'address' => array(
-            'type' => 'string',
-            'xmlName' => 'Address',
-        ),
-        'address2' => array(
-            'type' => 'string',
-            'xmlName' => 'Address2',
-        ),
         'city' => array(
             'type' => 'string',
             'xmlName' => 'City',
@@ -35,6 +27,14 @@ class AddressSettingsType extends BaseType
         'zipPostalCode' => array(
             'type' => 'string',
             'xmlName' => 'ZipPostalCode',
+        ),
+        'address' => array(
+            'type' => 'string',
+            'xmlName' => 'Address',
+        ),
+        'address2' => array(
+            'type' => 'string',
+            'xmlName' => 'Address2',
         ),
     );
 }

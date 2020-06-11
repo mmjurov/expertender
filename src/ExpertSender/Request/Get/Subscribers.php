@@ -7,12 +7,12 @@ use Zhmi\ExpertSender\Request;
 
 /**
  * Class Subscribers
- * @package Zhme\ExpertSender\Resource\Get
+ * @package Zhmi\ExpertSender\Resource\Get
  */
 class Subscribers extends Request
 {
     protected $endPoint = '/Api/Subscribers';
-    protected $responseEntity = 'Zhmi\\ExpertSender\\Response\\SubscriberType';
+    protected $responseEntity = 'App\\Extensions\\ExpertSender\\Response\\SubscriberType';
 
     /**
      * @param string $email Email подписчика, о котором нужно получить информацию
@@ -30,7 +30,7 @@ class Subscribers extends Request
 
         if ($this->urlParams['option'] == SubscribersOption::EVENTS_HISTORY)
         {
-            $this->responseEntity = 'Zhmi\\ExpertSender\\Response\\EventsType';
+            $this->responseEntity = 'App\\Extensions\\ExpertSender\\Response\\EventsType';
         }
     }
 

@@ -38,14 +38,23 @@ class ContentType extends BaseType
             'type' => 'string',
             'xmlName' => 'ReplyToEmail',
         ),
+        'subject' => array(
+            'type' => 'string',
+            'xmlName' => 'Subject',
+         ),
+        'plain' => array(
+            'type' => 'string',
+            'xmlName' => 'Plain',
+        ),
         'html' => array(
             'type' => 'string',
             'xmlName' => 'Html',
             'cdata' => true,
         ),
-        'plain' => array(
+        'ampHtml' => array(
             'type' => 'string',
-            'xmlName' => 'Plain',
+            'xmlName' => 'AmpHtml',
+            'cdata' => true,
         ),
         'header' => array(
             'type' => 'integer',
@@ -56,25 +65,39 @@ class ContentType extends BaseType
             'type' => 'integer',
             'xmlName' => 'Footer',
         ),
-        'contentFromUrl' => array(
-            'type' => 'Zhmi\\ExpertSender\\Entity\\ContentFromUrlType',
-            'xmlName' => 'ContentFromUrl',
-        ),
-        'googleAnalyticsTags' => array(
-            'type' => 'Zhmi\\ExpertSender\\Entity\\GoogleAnalyticsTagsType',
-            'xmlName' => 'GoogleAnalyticsTags',
-        ),
         'tags' => array(
             'type' => 'string',
             'xmlName' => 'Tag',
             'unbound' => true,
             'unboundTag' => 'Tags'
         ),
+        'contentFromUrl' => array(
+            'type' => 'App\\Extensions\\ExpertSender\\Entity\\ContentFromUrlType',
+            'xmlName' => 'ContentFromUrl',
+        ),
+        'googleAnalyticsTags' => array(
+            'type' => 'App\\Extensions\\ExpertSender\\Entity\\GoogleAnalyticsTagsType',
+            'xmlName' => 'GoogleAnalyticsTags',
+        ),
         'attachments' => array(
-            'type' => 'Zhmi\\ExpertSender\\Entity\\AttachmentType',
+            'type' => 'App\\Extensions\\ExpertSender\\Entity\\AttachmentType',
             'xmlName' => 'Attachment',
             'unbound' => true,
             'unboundTag' => 'Attachments'
+        ),
+        'urlIntegrations' => array(
+            'type' => 'App\\Extensions\\ExpertSender\\Entity\\UrlIntegrationType',
+            'xmlName' => 'UrlIntegration',
+            'unbound' => true,
+            'unboundTag' => 'UrlIntegrations'
+        ),
+        'enableOpenTrack' => array(
+            'type' => 'boolean',
+            'xmlName' => 'EnableClickTrack',
+        ),
+        'enableOpenTrack' => array(
+            'type' => 'boolean',
+            'xmlName' => 'EnableOpenTrack',
         ),
     );
 }

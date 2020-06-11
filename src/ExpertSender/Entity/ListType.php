@@ -1,12 +1,12 @@
 <?php
 
-namespace Zhmi\ExpertSender\Entity\Container;
+namespace Zhmi\ExpertSender\Entity;
 
 use Zhmi\ExpertSender\BaseType;
 
 /**
  * Class ListType
- * @package Zhmi\ExpertSender\Entity\Container
+ * @package Zhmi\ExpertSender\Entity
  * @property integer $id
  * @property string $name
  * @property string $friendlyName

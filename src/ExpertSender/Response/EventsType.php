@@ -12,7 +12,7 @@ class EventsType extends BaseType
 {
     protected $params = array(
         'Events' => array(
-            'type' => 'Zhmi\\ExpertSender\\Response\\EventType',
+            'type' => 'App\\Extensions\\ExpertSender\\Response\\EventType',
             'xmlName' => 'Events',
             'unbound' => true,
             'unboundTag' => 'Event'

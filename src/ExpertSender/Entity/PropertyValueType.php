@@ -24,6 +24,7 @@ class PropertyValueType extends BaseType
     );
 
     private $realValue;
+
     private $availableXsiMap = array(
         'string'    => 'string',
         'boolean'   => 'boolean',

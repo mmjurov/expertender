@@ -19,7 +19,7 @@ try
     }
     else
     {
-        echo $response->getResponseCode();
+        echo $response->getCode();
     }
 
 }

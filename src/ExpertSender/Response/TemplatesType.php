@@ -12,7 +12,7 @@ class TemplatesType extends BaseType
 {
     protected $params = array(
         'Templates' => array(
-            'type' => 'Zhmi\\ExpertSender\\Response\\TemplateType',
+            'type' => 'App\\Extensions\\ExpertSender\\Response\\TemplateType',
             'xmlName' => 'Templates',
             'unbound' => true,
             'unboundTag' => 'Template'

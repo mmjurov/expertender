@@ -4,7 +4,7 @@ namespace Zhmi\ExpertSender;
 
 /**
  * Класс, реализующий необходимые интерфейсы для работы с ним как с массивом
- * @package Zhme\ExpertSender
+ * @package Zhmi\ExpertSender
  */
 class Unbound implements \ArrayAccess, \Countable, \Iterator
 {

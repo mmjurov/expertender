@@ -27,6 +27,14 @@ class MessageType extends BaseType
             'type' => 'string',
             'xmlName' => 'Type',
         ),
+        'FromName' => array(
+            'type' => 'string',
+            'xmlName' => 'FromName'
+        ),
+        'FromEmail' => array(
+            'type' => 'string',
+            'xmlName' => 'FromEmail',
+        ),
         'Subject' => array(
             'type' => 'string',
             'xmlName' => 'Subject',
@@ -39,25 +47,43 @@ class MessageType extends BaseType
             'type' => 'string',
             'xmlName' => 'Tags',
         ),
-        'ThrottlingMethod' => array(
-            'type' => 'string',
-            'xmlName' => 'ThrottlingMethod',
+        'YandexListId' => array(
+            'type' => 'integer',
+            'xmlName' => 'YandexListId',
         ),
         'Channels' => array(
             'type' => 'string',
             'xmlName' => 'Channels',
         ),
+        'ThrottlingMethod' => array(
+            'type' => 'string',
+            'xmlName' => 'ThrottlingMethod',
+        ),
+        'Throttling' => array(
+            'type' => 'integer',
+            'xmlName' => 'Throttling',
+        ),
+        'Status' => array(
+            'type' => 'string',
+            'xmlName' => 'Status',
+        ),
         'Lists' => array(
-            'type' => 'Zhmi\\ExpertSender\\Response\\ListType',
+            'type' => 'App\\Extensions\\ExpertSender\\Response\\ListType',
             'xmlName' => 'Lists',
             'unbound' => true,
             'unboundTag' => 'List'
         ),
         'Segments' => array(
-            'type' => 'Zhmi\\ExpertSender\\Response\\SegmentType',
+            'type' => 'App\\Extensions\\ExpertSender\\Response\\SegmentType',
             'xmlName' => 'Segments',
             'unbound' => true,
             'unboundTag' => 'Segment'
+        ),
+        'GoogleAnalyticsTags' => array(
+            'type' => 'App\\Extensions\\ExpertSender\\Response\\GoogleAnalyticsTagType',
+            'xmlName' => 'GoogleAnalyticsTags',
+            'unbound' => true,
+            'unboundTag' => 'GoogleAnalyticsTag'
         ),
     );
 }

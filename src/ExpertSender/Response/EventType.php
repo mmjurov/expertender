@@ -5,7 +5,7 @@ use Zhmi\ExpertSender\BaseType;
 
 /**
  * Class EventType
- * @package Zhme\ExpertSender\Response
+ * @package Zhmi\ExpertSender\Response
  * @property \DateTime $StartDate
  * @property \DateTime $EndDate
  * @property string $MessageType

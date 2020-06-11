@@ -12,7 +12,7 @@ class RemovedSubscribersType extends BaseType
 {
     protected $params = array(
         'RemovedSubscribers' => array(
-            'type' => 'Zhmi\\ExpertSender\\Response\\RemovedSubscriberType',
+            'type' => 'App\\Extensions\\ExpertSender\\Response\\RemovedSubscriberType',
             'xmlName' => 'RemovedSubscribers',
             'unbound' => true,
             'unboundTag' => 'RemovedSubscriber'

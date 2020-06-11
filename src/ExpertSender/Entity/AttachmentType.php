@@ -6,7 +6,7 @@ use Zhmi\ExpertSender\BaseType;
 
 /**
  * Class Attachment
- * @package Zhme\ExpertSender\Entity
+ * @package Zhmi\ExpertSender\Entity
  * @property string $filename
  * @property string $mimeType
  * @property string $content

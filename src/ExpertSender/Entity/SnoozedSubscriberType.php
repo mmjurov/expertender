@@ -6,14 +6,18 @@ use Zhmi\ExpertSender\BaseType;
 /**
  * Class SnoozedSubscriberType
  * @package Zhmi\ExpertSender\Entity
+ * @property integer $id
  * @property string $email
  * @property integer $listId
- * @property integer $id
  * @property integer $snoozeWeeks
  */
 class SnoozedSubscriberType extends BaseType
 {
     protected $params = array(
+        'id' => array(
+            'type' => 'integer',
+            'xmlName' => 'Id',
+        ),
         'email' => array(
             'type' => 'string',
             'xmlName' => 'Email'
@@ -21,10 +25,6 @@ class SnoozedSubscriberType extends BaseType
         'listId' => array(
             'type' => 'integer',
             'xmlName' => 'ListId',
-        ),
-        'id' => array(
-            'type' => 'integer',
-            'xmlName' => 'Id',
         ),
         'snoozeWeeks' => array(
             'type' => 'integer',

@@ -15,15 +15,15 @@ class NewsletterType extends BaseType
 {
     protected $params = array(
         'recipients' => array(
-            'type' => 'Zhmi\\ExpertSender\\Entity\\RecipientsType',
+            'type' => 'App\\Extensions\\ExpertSender\\Entity\\RecipientsType',
             'xmlName' => 'Recipients',
         ),
         'content' => array(
-            'type' => 'Zhmi\\ExpertSender\\Entity\\ContentType',
+            'type' => 'App\\Extensions\\ExpertSender\\Entity\\ContentType',
             'xmlName' => 'Content',
         ),
         'deliverySettings' => array(
-            'type' => 'Zhmi\\ExpertSender\\Entity\\DeliverySettingsType',
+            'type' => 'App\\Extensions\\ExpertSender\\Entity\\DeliverySettingsType',
             'xmlName' => 'DeliverySettings',
         )
     );

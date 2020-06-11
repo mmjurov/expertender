@@ -12,6 +12,7 @@ use Zhmi\ExpertSender\BaseType;
  * @property integer $listId
  * @property integer $id
  * @property string $email
+ * @property string $phone
  * @property string $firstname
  * @property string $lastname
  * @property string $trackingCode
@@ -45,6 +46,10 @@ class SubscriberType extends BaseType
             'type' => 'string',
             'xmlName' => 'Email',
         ),
+        'phone' => array(
+            'type' => 'string',
+            'xmlName' => 'Phone',
+        ),
         'firstname' => array(
             'type' => 'string',
             'xmlName' => 'Firstname',
@@ -70,7 +75,7 @@ class SubscriberType extends BaseType
             'xmlName' => 'Ip',
         ),
         'properties' => array(
-            'type' => 'Zhmi\\ExpertSender\\Entity\\PropertyType',
+            'type' => 'App\\Extensions\\ExpertSender\\Entity\\PropertyType',
             'xmlName' => 'Property',
             'unbound' => true,
             'unboundTag' => 'Properties'

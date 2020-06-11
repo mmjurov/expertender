@@ -4,7 +4,7 @@ namespace Zhmi\ExpertSender;
 
 /**
  * Базовый класс для всех ответов
- * @package Zhme\ExpertSender
+ * @package Zhmi\ExpertSender
  */
 class Response
 {
@@ -35,53 +35,55 @@ class Response
      */
     function __construct($body, $headers, $responseEntityType = null)
     {
+        $this->responseBody = $body;
+        $this->responseHeaders = $headers;
+        
         $responseCode = null;
         foreach ($headers as $header)
         {
             if (preg_match('~HTTP.+ ([0-9]+).+~', $header, $matches))
             {
-                $responseCode = $matches[1];
+                $responseCode = trim($matches[1]);
             }
         }
 
-        $this->responseBody = $body;
-        $expectedEntity = strpos($body, 'ErrorMessage') !== false ?
-            'Zhmi\\ExpertSender\\Response\\ErrorMessageType' :
-            $responseEntityType;
-
-        $entity = null;
+        $responseEntity = null;
         if ($body !== null)
         {
-            $parser = new XmlParser( $expectedEntity );
-            $entity = $parser->parse( $body );
+            $expectedEntity = strpos($body, 'ErrorMessage') !== false ? 'App\\Extensions\\ExpertSender\\Response\\ErrorMessageType' : $responseEntityType;
+            $responseEntity = (new XmlParser( $expectedEntity ))->parse( $body );
         }
 
         $this->responseCode = $responseCode;
-        $this->responseEntity = $entity;
-        $this->responseHeaders = $headers;
+        $this->responseEntity = $responseEntity;
     }
 
-    public function getResponseCode()
+    public function getHeades()
     {
-        return $this->responseCode;
+        return $this->responseHeaders;
     }
 
-    public function getResponseBody()
+    public function getBody()
     {
         return $this->responseBody;
     }
 
+    public function getCode()
+    {
+        return $this->responseCode;
+    }
+
+    public function getResponseEntity()
+    {
+        return $this->responseEntity;
+    }
+
     /**
-     * Проверяет успешность отработанного запроса. Проверяет, начинается ли код статуса ответа на 2
+     * request state
      * @return bool
      */
     public function isOk()
     {
         return strpos($this->responseCode, '2') === 0;
-    }
-
-    public function getEntity()
-    {
-        return $this->responseEntity;
     }
 }

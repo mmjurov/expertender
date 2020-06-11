@@ -6,21 +6,21 @@ use Zhmi\ExpertSender\BaseType;
 
 /**
  * Class ReceiverType
- * @package Zhme\ExpertSender\Entity
- * @property string $email
+ * @package Zhmi\ExpertSender\Entity
  * @property int $id
+ * @property string $email
  * @property int $listId
  */
 class ReceiverType extends BaseType
 {
     protected $params = array(
-        'email' => array(
-            'type' => 'string',
-            'xmlName' => 'Email',
-        ),
         'id' => array(
             'type' => 'integer',
             'xmlName' => 'Id'
+        ),
+        'email' => array(
+            'type' => 'string',
+            'xmlName' => 'Email',
         ),
         'listId' => array(
             'type' => 'integer',
@@ -28,16 +28,11 @@ class ReceiverType extends BaseType
         )
     );
 
-    public function __construct($email = null, $id = null, $listId = null)
+    public function __construct($id = null, $email = null, $listId = null)
     {
         if ($email !== null && !filter_var($email, FILTER_VALIDATE_EMAIL))
         {
             throw new \InvalidArgumentException('Invalid email');
-        }
-
-        if ($email !== null)
-        {
-            $this->email = $email;
         }
 
         if ($id !== null)
@@ -45,16 +40,20 @@ class ReceiverType extends BaseType
             $this->id = $id;
         }
 
+        if ($email !== null)
+        {
+            $this->email = $email;
+        }
+
         if ($listId !== null)
         {
             $this->listId = $listId;
         }
-
     }
 
     private function check()
     {
-        if ($this->email === null && $this->id === null && $this->listId === null)
+        if (&& $this->id === null $this->email === null && $this->listId === null)
         {
             throw new \InvalidArgumentException('Must be set one or more receiver parameters');
         }

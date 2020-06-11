@@ -12,7 +12,7 @@ class ListsType extends BaseType
 {
     protected $params = array(
         'Lists' => array(
-            'type' => 'Zhmi\\ExpertSender\\Response\\ListType',
+            'type' => 'App\\Extensions\\ExpertSender\\Response\\ListType',
             'xmlName' => 'Lists',
             'unbound' => true,
             'unboundTag' => 'List'

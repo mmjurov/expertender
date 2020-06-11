@@ -17,23 +17,23 @@ class ListSettingsType extends BaseType
 {
     protected $params = array(
         'generalSettings' => array(
-            'type' => 'Zhmi\\ExpertSender\\Entity\\GeneralSettingsType',
+            'type' => 'App\\Extensions\\ExpertSender\\Entity\\GeneralSettingsType',
             'xmlName' => 'GeneralSettings',
         ),
         'addressSettings' => array(
-            'type' => 'Zhmi\\ExpertSender\\Entity\\AddressSettingsType',
+            'type' => 'App\\Extensions\\ExpertSender\\Entity\\AddressSettingsType',
             'xmlName' => 'AddressSettings',
         ),
         'subscriberSettings' => array(
-            'type' => 'Zhmi\\ExpertSender\\Entity\\SubscriberSettingsType',
+            'type' => 'App\\Extensions\\ExpertSender\\Entity\\SubscriberSettingsType',
             'xmlName' => 'SubscriberSettings',
         ),
         'domainSettings' => array(
-            'type' => 'Zhmi\\ExpertSender\\Entity\\DomainSettingsType',
+            'type' => 'App\\Extensions\\ExpertSender\\Entity\\DomainSettingsType',
             'xmlName' => 'DomainSettings',
         ),
         'confirmationEmail' => array(
-            'type' => 'Zhmi\\ExpertSender\\Entity\\ConfirmationEmailType',
+            'type' => 'App\\Extensions\\ExpertSender\\Entity\\ConfirmationEmailType',
             'xmlName' => 'ConfirmationEmail',
         ),
     );

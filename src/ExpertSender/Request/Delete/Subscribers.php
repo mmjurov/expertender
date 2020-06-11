@@ -10,7 +10,7 @@ class Subscribers extends Request
 
     public function __construct($identifier, $listId = null)
     {
-        if (is_int($identifier))
+        if (is_numeric($identifier))
         {
             $this->endPoint .= '/' . (int)$identifier;
         }
